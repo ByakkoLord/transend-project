@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1189.0" stylesheets="@fxmlStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="752.0" layoutX="-5.0" stroke="#ffffff00" strokeType="INSIDE" width="1202.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5f3ff" height="661.0" layoutX="-1.0" layoutY="139.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 30px; -fx-arc-height: 30px;" width="1196.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfe2f3" height="661.0" layoutY="139.0" stroke="#ffffff00" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="208.0" />
-   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="253.0" layoutY="82.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1259.0" stylesheets="@fxmlStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="752.0" layoutX="-5.0" stroke="#ffffff00" strokeType="INSIDE" width="1265.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5f3ff" height="661.0" layoutX="-1.0" layoutY="139.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 30px; -fx-arc-height: 30px;" width="1259.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfe2f3" height="661.0" layoutY="139.0" stroke="#ffffff00" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="220.0" />
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="289.0" layoutY="82.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -22,27 +22,27 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Text fill="#5582a8" layoutX="268.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="304.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="20.0" />
       </font>
    </Text>
-   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="292.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="328.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@assets/bus%20icon.png" />
       </image>
    </ImageView>
-   <Text layoutX="365.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4586" wrappingWidth="122.34765625">
+   <Text layoutX="401.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4586" wrappingWidth="122.34765625">
       <font>
-         <Font name="SansSerif Bold" size="24.0" />
+         <Font name="Nirmala UI Bold" size="32.0" />
       </font>
    </Text>
-   <Text fill="#5582a8" layoutX="365.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="401.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="106.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="566.0" layoutY="82.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="610.0" layoutY="82.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -51,27 +51,27 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Text fill="#5582a8" layoutX="581.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="625.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="20.0" />
       </font>
    </Text>
-   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="605.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="649.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@assets/bus%20icon.png" />
       </image>
    </ImageView>
-   <Text layoutX="678.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4586" wrappingWidth="122.34765625">
+   <Text layoutX="722.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="386" wrappingWidth="122.34765625">
       <font>
-         <Font name="SansSerif Bold" size="24.0" />
+         <Font name="Nirmala UI Bold" size="32.0" />
       </font>
    </Text>
-   <Text fill="#5582a8" layoutX="678.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="722.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Garage" wrappingWidth="106.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="874.0" layoutY="82.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="929.0" layoutY="82.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -80,34 +80,57 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Text fill="#5582a8" layoutX="889.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="944.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Region" wrappingWidth="106.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="20.0" />
       </font>
    </Text>
-   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="913.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="71.0" fitWidth="74.0" layoutX="950.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@assets/bus%20icon.png" />
+         <Image url="@assets/map%20icon.png" />
       </image>
    </ImageView>
-   <Text layoutX="986.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4586" wrappingWidth="122.34765625">
+   <Text layoutX="1030.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São Paulo" wrappingWidth="157.34765625">
       <font>
-         <Font name="SansSerif Bold" size="24.0" />
+         <Font name="Nirmala UI Bold" size="32.0" />
       </font>
    </Text>
-   <Text fill="#5582a8" layoutX="986.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="1030.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" wrappingWidth="106.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <ImageView fitHeight="92.0" fitWidth="74.0" layoutX="78.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="92.0" fitWidth="74.0" layoutX="73.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@assets/logo.png" />
       </image>
    </ImageView>
    <Text fill="WHITE" layoutX="32.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome SPTrans" wrappingWidth="166.34765625">
       <font>
-         <Font name="Arial Bold" size="18.0" />
+         <Font name="Nirmala UI Bold" size="18.0" />
       </font>
    </Text>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="78.0" layoutX="14.0" layoutY="151.0" stroke="#ab898900" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="81.0">
+      <effect>
+         <DropShadow>
+            <color>
+               <Color red="0.0313725508749485" green="0.29019609093666077" blue="0.5137255191802979" />
+            </color>
+         </DropShadow>
+      </effect>
+   </Rectangle>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="78.0" layoutX="117.0" layoutY="151.0" stroke="#ab898900" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="81.0">
+      <effect>
+         <DropShadow spread="0.6">
+            <color>
+               <Color opacity="0.06488549709320068" />
+            </color>
+         </DropShadow>
+      </effect>
+   </Rectangle>
+   <ImageView fitHeight="58.0" fitWidth="40.0" layoutX="138.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@assets/lines%20icon%20unselected.png" />
+      </image>
+   </ImageView>
 </AnchorPane>
