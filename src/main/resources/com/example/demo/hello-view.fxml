@@ -133,4 +133,19 @@
          <Image url="@assets/lines%20icon%20unselected.png" />
       </image>
    </ImageView>
+   <Text fill="#5582a8" layoutX="129.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Routes" wrappingWidth="58.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="17.0" />
+      </font>
+   </Text>
+   <ImageView fitHeight="38.0" fitWidth="40.0" layoutX="35.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@assets/home%20selected.png" />
+      </image>
+   </ImageView>
+   <Text fill="WHITE" layoutX="30.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" wrappingWidth="50.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="17.0" />
+      </font>
+   </Text>
 </AnchorPane>
