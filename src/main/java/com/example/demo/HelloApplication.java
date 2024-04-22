@@ -8,9 +8,27 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+
 public class HelloApplication extends Application {
+
+
     @Override
     public void start(Stage stage) throws IOException {
+        try {
+            Connection connection = Database.getConnection();
+
+            if (connection != null) {
+                System.out.println("Conexão bem-sucedida!");
+
+                connection.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         Image icon = new Image("file:src/main/resources/com/example/demo/assets/logo.png");
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
