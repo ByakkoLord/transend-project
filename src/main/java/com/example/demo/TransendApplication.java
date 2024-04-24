@@ -20,11 +20,15 @@ public class TransendApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1180, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1259, 821);
+
+
+
         try {
             Connection connection = Database.getConnection();
 
             TransendController controller = fxmlLoader.getController();
+
 
             if (connection != null) {
                 System.out.println("Conexão bem-sucedida!");
@@ -36,6 +40,7 @@ public class TransendApplication extends Application {
                         while (resultSet.next()) {
                             int bus = resultSet.getInt("bus");
                             controller.Bus(bus);
+                            controller.initializeGrafic();
                         }
                     }
                 }
@@ -47,19 +52,12 @@ public class TransendApplication extends Application {
 
 
         Image icon = new Image("file:src/main/resources/com/example/demo/assets/logo.png");
-
-
-
-
-
-
-
         stage.getIcons().add(icon);
 
-        stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
+        //stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
 
-        stage.setMaxHeight(600);
-        stage.setMaxWidth(1180);
+        stage.setMaxWidth(1259);
+        stage.setMaxHeight(821);
         stage.setTitle("Transend");
         stage.setScene(scene);
         stage.show();
