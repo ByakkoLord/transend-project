@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -187,4 +188,14 @@
          <Font name="Nirmala UI Bold" size="32.0" />
       </font>
    </Label>
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="310.0" layoutX="806.0" layoutY="335.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="407.0">
+      <effect>
+         <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
+            <color>
+               <Color opacity="0.3778626024723053" />
+            </color>
+         </DropShadow>
+      </effect>
+   </Rectangle>
+   <PieChart fx:id="graf" labelsVisible="false" layoutX="806.0" layoutY="336.0" legendVisible="false" prefHeight="310.0" prefWidth="407.0" />
 </AnchorPane>
