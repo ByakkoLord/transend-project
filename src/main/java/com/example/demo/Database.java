@@ -1,16 +1,39 @@
 package com.example.demo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Arrays;
 
 
 public class Database {
-    private static final String URL = "jdbc:postgresql://localhost:5432/test";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "11@12B20c";
+    private String url;
+    private String user;
+    private String password;
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    private Connection connection;
+
+    public Database(String url, String user, String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+
+        try {
+            this.connection = DriverManager.getConnection(url, user, password);
+        } catch(SQLException e) {
+            System.out.println(Arrays.toString(e.getStackTrace()));
+        }
+    }
+
+    public int getBus() {
+        String query = "select * from bus";
+
+        try {
+            Statement statement = this.connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            resultSet.next();
+            return resultSet.getInt("bus");
+        } catch(SQLException e) {
+            System.out.println(Arrays.toString(e.getStackTrace()));
+            return -1;
+        }
     }
 }
