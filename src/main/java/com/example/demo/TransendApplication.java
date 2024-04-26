@@ -18,6 +18,9 @@ public class TransendApplication extends Application {
 
     Database database = new Database("jdbc:postgresql://localhost:5432/test", "postgres", "11@12B20c");
 
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
@@ -28,6 +31,18 @@ public class TransendApplication extends Application {
 
         controller.Bus(bus);
         controller.initializeGrafic();
+
+
+        scene.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        scene.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+
+        });
 
 
         Image icon = new Image("file:src/main/resources/com/example/demo/assets/logo.png");
