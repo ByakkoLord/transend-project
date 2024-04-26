@@ -33,7 +33,7 @@ public class TransendApplication extends Application {
         Image icon = new Image("file:src/main/resources/com/example/demo/assets/logo.png");
         stage.getIcons().add(icon);
 
-        //stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
+        stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
 
         stage.setMaxWidth(1259);
         stage.setMaxHeight(821);
