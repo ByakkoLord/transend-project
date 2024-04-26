@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
@@ -20,7 +20,7 @@
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="800.0" layoutX="-3.0" layoutY="-18.0" stroke="#ffffff00" strokeType="INSIDE" width="1265.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5f3ff" height="661.0" layoutY="158.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 30px; -fx-arc-height: 30px;" width="1259.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfe2f3" height="661.0" layoutX="1.0" layoutY="158.0" stroke="#ffffff00" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="220.0" />
-   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="290.0" layoutY="101.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="275.0" layoutY="101.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -29,22 +29,22 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Text fill="#5582a8" layoutX="305.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="290.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
       </font>
    </Text>
-   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="329.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="314.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@assets/bus%20icon.png" />
       </image>
    </ImageView>
-   <Text fill="#5582a8" layoutX="402.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="387.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="106.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="611.0" layoutY="101.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="596.0" layoutY="101.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -53,7 +53,7 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Text fill="#5582a8" layoutX="626.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="611.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bus State" wrappingWidth="106.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
       </font>
@@ -63,7 +63,7 @@
          <Image url="@assets/bus%20icon.png" />
       </image>
    </ImageView>
-   <Text layoutX="723.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="386" wrappingWidth="122.34765625">
+   <Text layoutX="723.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="386" wrappingWidth="122.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="32.0" />
       </font>
@@ -73,7 +73,7 @@
          <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="930.0" layoutY="101.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
+   <Rectangle id="car" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="156.0" layoutX="915.0" layoutY="101.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" styleClass="car" width="279.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -82,22 +82,22 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Text fill="#5582a8" layoutX="945.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Region" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="930.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Region" wrappingWidth="106.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
       </font>
    </Text>
-   <ImageView fitHeight="71.0" fitWidth="74.0" layoutX="951.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="71.0" fitWidth="74.0" layoutX="936.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@assets/map%20icon.png" />
       </image>
    </ImageView>
-   <Text layoutX="1031.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São Paulo" wrappingWidth="157.34765625">
+   <Text layoutX="1016.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="São Paulo" wrappingWidth="157.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="32.0" />
       </font>
    </Text>
-   <Text fill="#5582a8" layoutX="1031.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" wrappingWidth="106.34765625">
+   <Text fill="#5582a8" layoutX="1016.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" wrappingWidth="106.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="17.0" />
       </font>
@@ -131,7 +131,7 @@
          <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <Label fx:id="bus_state_one" layoutX="402.0" layoutY="150.0" prefHeight="47.0" prefWidth="81.0" text="4586">
+   <Label fx:id="bus_state_one" layoutX="387.0" layoutY="150.0" prefHeight="47.0" prefWidth="81.0" text="4586">
       <font>
          <Font name="Nirmala UI Bold" size="32.0" />
       </font>
@@ -158,25 +158,25 @@
       </image>
    </ImageView>
    <Button layoutX="16.0" layoutY="274.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="81.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
-   <Text disable="true" fill="#5582a8" layoutX="28.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Routes" wrappingWidth="58.0">
+   <Text disable="true" fill="#5582a8" layoutX="28.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphs" wrappingWidth="58.0">
       <font>
          <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
    <ImageView disable="true" fitHeight="58.0" fitWidth="40.0" layoutX="37.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@assets/lines%20icon%20unselected.png" />
+         <Image url="@assets/chart%20icon%20unselected.png" />
       </image>
    </ImageView>
    <Button layoutX="119.0" layoutY="274.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="81.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
-   <Text disable="true" fill="#5582a8" layoutX="131.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Routes" wrappingWidth="58.0">
+   <Text disable="true" fill="#5582a8" layoutX="131.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Config" wrappingWidth="58.0">
       <font>
          <Font name="Nirmala UI Bold" size="17.0" />
       </font>
    </Text>
-   <ImageView disable="true" fitHeight="58.0" fitWidth="40.0" layoutX="140.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView disable="true" fitHeight="47.0" fitWidth="64.0" layoutX="127.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
       <image>
-         <Image url="@assets/lines%20icon%20unselected.png" />
+         <Image url="@assets/settings%20icon%20unselected.png" />
       </image>
    </ImageView>
    <Circle fill="#084a83" layoutX="841.0" layoutY="687.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
@@ -224,30 +224,30 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <LineChart layoutX="258.0" layoutY="350.0" prefHeight="337.0" prefWidth="500.0">
+   <Circle fill="#084a83" layoutX="285.0" layoutY="686.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Text layoutX="304.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PCD Adaptated" wrappingWidth="106.34765625">
+      <font>
+         <Font name="Nirmala UI Bold" size="14.0" />
+      </font>
+   </Text>
+   <Circle fill="#ff9b1f" layoutX="453.0" layoutY="687.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Text layoutX="475.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PCD not Adaptated" wrappingWidth="137.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="14.0" />
+      </font>
+   </Text>
+   <Circle fill="#25bc50" layoutX="630.0" layoutY="687.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Text layoutX="650.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Maintence" wrappingWidth="95.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="14.0" />
+      </font>
+   </Text>
+   <BarChart layoutX="258.0" layoutY="350.0" prefHeight="310.0" prefWidth="500.0">
      <xAxis>
        <CategoryAxis side="BOTTOM" />
      </xAxis>
      <yAxis>
        <NumberAxis side="LEFT" />
      </yAxis>
-   </LineChart>
-   <Circle fill="#084a83" layoutX="339.0" layoutY="686.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text layoutX="353.0" layoutY="691.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Operation" wrappingWidth="95.0">
-      <font>
-         <Font name="Nirmala UI Bold" size="14.0" />
-      </font>
-   </Text>
-   <Circle fill="#ff9b1f" layoutX="471.0" layoutY="686.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text layoutX="485.0" layoutY="691.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Garage" wrappingWidth="95.0">
-      <font>
-         <Font name="Nirmala UI Bold" size="14.0" />
-      </font>
-   </Text>
-   <Circle fill="#25bc50" layoutX="578.0" layoutY="686.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text layoutX="592.0" layoutY="691.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Maintence" wrappingWidth="95.0">
-      <font>
-         <Font name="Nirmala UI Bold" size="14.0" />
-      </font>
-   </Text>
+   </BarChart>
 </AnchorPane>
