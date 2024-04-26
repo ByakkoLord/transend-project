@@ -1,4 +1,5 @@
 package com.example.demo;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
@@ -6,6 +7,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+
 
 public class TransendController {
     @FXML
@@ -19,6 +22,10 @@ public class TransendController {
         Bus(bus);
 
 }
+
+
+
+
     boolean pieGrafic = false;
     @FXML
     public void initializeGrafic() {
@@ -53,4 +60,15 @@ public class TransendController {
     public void Bus(int bus) {
         bus_state_one.setText(Integer.toString(bus));
     }
+
+    public void setClose() {
+        System.exit(0);
+    }
+
+    public void setMinimize() {
+        Stage stage = (Stage) bus_state_one.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
 }
