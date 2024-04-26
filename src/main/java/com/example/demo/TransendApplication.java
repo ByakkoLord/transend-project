@@ -16,39 +16,18 @@ import java.sql.Statement;
 
 public class TransendApplication extends Application {
 
+    Database database = new Database("jdbc:postgresql://localhost:5432/test", "postgres", "11@12B20c");
 
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1259, 821);
 
+        int bus = database.getBus();
+        TransendController controller = fxmlLoader.getController();
 
-
-        try {
-            Connection connection = Database.getConnection();
-
-            TransendController controller = fxmlLoader.getController();
-
-
-            if (connection != null) {
-                System.out.println("Conexão bem-sucedida!");
-
-                try (Statement statement = connection.createStatement()) {
-                    String sql = "select * from bus"; // Query de Teste
-
-                    try (ResultSet resultSet = statement.executeQuery(sql)) {
-                        while (resultSet.next()) {
-                            int bus = resultSet.getInt("bus");
-                            controller.Bus(bus);
-                            controller.initializeGrafic();
-                        }
-                    }
-                }
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        controller.Bus(bus);
+        controller.initializeGrafic();
 
 
         Image icon = new Image("file:src/main/resources/com/example/demo/assets/logo.png");
