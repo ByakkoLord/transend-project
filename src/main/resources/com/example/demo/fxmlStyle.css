@@ -1,3 +1,54 @@
 .grafic{
     .data0.chart-pie { -fx-pie-color: turquoise; }
 }
+
+.buttons {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 0.75);
+}
+
+.buttons:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #bcbcbc;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0.75);
+}
+
+.topBarButtons{
+    -fx-background-color: rgba(255, 255, 255, 0);
+    -fx-max-width: 2px;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 10, 0, 0, 0.75);
+}
+
+.topBarButtons:hover{
+    -fx-cursor: hand;
+    -fx-background-color: rgba(188, 188, 188, 0.26);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0.75);
+}
