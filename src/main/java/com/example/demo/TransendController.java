@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -12,6 +13,9 @@ import javafx.scene.text.Text;
 
 
 public class TransendController {
+
+    @FXML
+    private VBox VboxScroll;
 
     @FXML
     private AnchorPane anchorPane;
@@ -63,9 +67,6 @@ public class TransendController {
 
     @FXML
     private Text pieText2;
-
-    @FXML
-    private Rectangle
 
     @FXML
     public void initialize(int bus) {
@@ -121,6 +122,7 @@ public class TransendController {
 
     public void setRoutes(){
         graphBox.setVisible(false);
+        graf.setVisible(false);
         barChart.setVisible(false);
         baricon.setVisible(false);
         baricon1.setVisible(false);
@@ -135,10 +137,14 @@ public class TransendController {
         pieText1.setVisible(false);
         pieText2.setVisible(false);
 
+
         Rectangle busContainer = new Rectangle(100,50);
+        VboxScroll.getChildren().add(busContainer);
+
         busContainer.setStyle("-fx-fill: #084a83;");
         busContainer.setLayoutX(50);
         busContainer.setLayoutY(50);
+
     }
 
 
