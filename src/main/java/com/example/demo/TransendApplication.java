@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -13,10 +14,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class TransendApplication extends Application {
 
+    Dotenv dotenv = Dotenv.load();
     Database database = new Database("jdbc:postgresql://localhost:5432/test", "postgres", "11@12B20c");
+    SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -41,7 +43,6 @@ public class TransendApplication extends Application {
         scene.setOnMouseDragged(event -> {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
-
         });
 
 
