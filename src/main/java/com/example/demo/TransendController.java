@@ -2,15 +2,20 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.PieChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
 
 public class TransendController {
+
+    @FXML
+    private AnchorPane anchorPane;
+
     @FXML
     private Label bus_state_one;
 
@@ -18,9 +23,53 @@ public class TransendController {
     private PieChart graf;
 
     @FXML
+    private Rectangle graphBox;
+
+    @FXML
+    private BarChart barChart;
+
+    @FXML
+    private Circle baricon;
+
+    @FXML
+    private Circle baricon1;
+
+    @FXML
+    private Circle baricon2;
+
+    @FXML
+    private Text barText;
+
+    @FXML
+    private Text barText1;
+
+    @FXML
+    private Text barText2;
+
+    @FXML
+    private Circle pieicon;
+
+    @FXML
+    private Circle pieicon1;
+
+    @FXML
+    private Circle pieicon2;
+
+    @FXML
+    private Text pieText;
+
+    @FXML
+    private Text pieText1;
+
+    @FXML
+    private Text pieText2;
+
+    @FXML
+    private Rectangle
+
+    @FXML
     public void initialize(int bus) {
         Bus(bus);
-
 }
 
 
@@ -68,6 +117,28 @@ public class TransendController {
     public void setMinimize() {
         Stage stage = (Stage) bus_state_one.getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    public void setRoutes(){
+        graphBox.setVisible(false);
+        barChart.setVisible(false);
+        baricon.setVisible(false);
+        baricon1.setVisible(false);
+        baricon2.setVisible(false);
+        barText.setVisible(false);
+        barText1.setVisible(false);
+        barText2.setVisible(false);
+        pieicon.setVisible(false);
+        pieicon1.setVisible(false);
+        pieicon2.setVisible(false);
+        pieText.setVisible(false);
+        pieText1.setVisible(false);
+        pieText2.setVisible(false);
+
+        Rectangle busContainer = new Rectangle(100,50);
+        busContainer.setStyle("-fx-fill: #084a83;");
+        busContainer.setLayoutX(50);
+        busContainer.setLayoutY(50);
     }
 
 
