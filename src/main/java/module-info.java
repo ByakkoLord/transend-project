@@ -4,8 +4,9 @@ module com.example.demo {
     requires java.sql;
     requires io.github.cdimascio.dotenv.java;
     requires java.net.http;
-    requires org.apache.httpcomponents.client5.httpclient5;
-    requires org.apache.httpcomponents.core5.httpcore5;
+    requires okhttp3;
+    requires annotations;
+    requires com.squareup.moshi;
 
 
     opens com.example.demo to javafx.fxml;

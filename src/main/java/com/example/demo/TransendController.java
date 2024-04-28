@@ -65,9 +65,6 @@ public class TransendController {
     private Text pieText2;
 
     @FXML
-    private Rectangle
-
-    @FXML
     public void initialize(int bus) {
         Bus(bus);
 }

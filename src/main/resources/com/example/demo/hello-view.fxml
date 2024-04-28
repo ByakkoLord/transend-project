@@ -230,13 +230,5 @@
        <NumberAxis side="LEFT" />
      </yAxis>
    </BarChart>
-   <Rectangle fx:id="busList" fx:id="graphBox11" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="416.0" layoutX="258.0" layoutY="327.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="957.0">
-      <effect>
-         <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
-            <color>
-               <Color opacity="0.3778626024723053" />
-            </color>
-         </DropShadow>
-      </effect>
-   </Rectangle>
+
 </AnchorPane>

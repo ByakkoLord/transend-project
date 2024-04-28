@@ -1,55 +1,57 @@
 package com.example.demo;
 
-import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.http.ClassicHttpRequest;
-import org.apache.hc.core5.http.HttpEntity;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.io.support.ClassicRequestBuilder;
-import org.apache.hc.core5.http.message.BasicNameValuePair;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+import okhttp3.*;
 
 import java.io.IOException;
-import java.util.List;
 
 public class SPTransAPI {
-    private final static String apiUrl = "https://api.olhovivo.sptrans.com.br/v2.1/";
-    private CloseableHttpClient httpClient;
+    private final static String apiUrl = "https://api.olhovivo.sptrans.com.br/v2.1";
+
+    private final Moshi moshi = new Moshi.Builder().build();
+    private final JsonAdapter<BusPosicaoResult> busPosicaoJsonAdapter = moshi.adapter(BusPosicaoResult.class);
+    private final OkHttpClient client = new OkHttpClient.Builder().cookieJar(new MyCookieJar()).build();
 
     public SPTransAPI(String sptransKey) {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            this.httpClient = httpClient;
+        RequestBody emptyBody = RequestBody.create("", null);
+        Request request = new Request.Builder()
+                .url(apiUrl + "/login/autenticar?token=" + sptransKey)
+                .post(emptyBody)
+                .build();
 
-            ClassicHttpRequest httpPost = ClassicRequestBuilder.post(apiUrl + "/Login/Autenticar")
-                    .setEntity(new UrlEncodedFormEntity(List.of(
-                            new BasicNameValuePair("token", sptransKey)
-                    )))
-                    .build();
+        try (Response response = client.newCall(request).execute()) {
+            ResponseBody body = response.body();
 
-            String result = httpClient.execute(httpPost, response -> {
-               System.out.println(response.getCode() + " | " + response.getReasonPhrase());
-
-                final HttpEntity entity = response.getEntity();
-
-                EntityUtils.consume(entity);
-                return EntityUtils.toString(response.getEntity());
-            });
-
-            System.out.println("sptrans respondeu " + result);
-        } catch (IOException exception) {
-            exception.printStackTrace();
+            if (!response.isSuccessful() || body == null || !body.string().equals("true")) {
+                throw new Error("Falha ao autenticar com api sptrans");
+            }
+        } catch (IOException e) {
+            System.out.println("error: " + e);
+        } catch (Error e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public Bus[] getBusOnCorridor() {
-        try {
-            ClassicRequestBuilder httpPost = ClassicRequestBuilder.post(apiUrl + "")
+    public BusPosicaoResult getAllBuses() {
+        Request request = new Request.Builder()
+                .url(apiUrl + "/posicao")
+                .build();
 
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) throw new Error("getAllBuses Request failed");
+
+            ResponseBody body = response.body();
+
+            if (body == null) throw new Error("Falha ao autenticar com api sptrans");
+
+            return busPosicaoJsonAdapter.fromJson(body.source());
+        } catch (IOException e) {
+            System.out.println("error: " + e);
+        } catch (Error e) {
+            System.out.println(e.getMessage());
         }
-    }
 
-    public static class Bus {
-        public String id;
-        public String corredor;
+        return null;
     }
 }

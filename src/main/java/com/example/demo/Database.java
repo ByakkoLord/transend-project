@@ -13,7 +13,7 @@ public class Database {
         try {
             this.connection = DriverManager.getConnection(url, user, password);
         } catch(SQLException e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
+            System.out.println("deu ruim 2: " + e.toString());
         }
     }
 

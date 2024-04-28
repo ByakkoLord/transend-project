@@ -3,21 +3,17 @@ package com.example.demo;
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.Image;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 
 public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
-    Database database = new Database("jdbc:postgresql://localhost:5432/test", "postgres", "11@12B20c");
+    Database database = new Database("jdbc:postgresql://localhost:5432/postgres", "postgres", "11@12B20c");
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
@@ -28,10 +24,12 @@ public class TransendApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1259, 821);
 
-        int bus = database.getBus();
+        List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
+        int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
+
         TransendController controller = fxmlLoader.getController();
 
-        controller.Bus(bus);
+        controller.Bus(busCount);
         controller.initializeGrafic();
 
 
