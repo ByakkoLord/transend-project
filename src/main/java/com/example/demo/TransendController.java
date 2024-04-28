@@ -4,7 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -12,6 +15,11 @@ import javafx.scene.text.Text;
 
 
 public class TransendController {
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
+    private VBox VboxScroll;
 
     @FXML
     private AnchorPane anchorPane;
@@ -116,8 +124,29 @@ public class TransendController {
         stage.setIconified(true);
     }
 
+    public void setGraphs(){
+        scrollPane.setVisible(false);
+        graphBox.setVisible(true);
+        graf.setVisible(true);
+        barChart.setVisible(true);
+        baricon.setVisible(true);
+        baricon1.setVisible(true);
+        baricon2.setVisible(true);
+        barText.setVisible(true);
+        barText1.setVisible(true);
+        barText2.setVisible(true);
+        pieicon.setVisible(true);
+        pieicon1.setVisible(true);
+        pieicon2.setVisible(true);
+        pieText.setVisible(true);
+        pieText1.setVisible(true);
+        pieText2.setVisible(true);
+    }
+
     public void setRoutes(){
+        scrollPane.setVisible(true);
         graphBox.setVisible(false);
+        graf.setVisible(false);
         barChart.setVisible(false);
         baricon.setVisible(false);
         baricon1.setVisible(false);
@@ -132,10 +161,22 @@ public class TransendController {
         pieText1.setVisible(false);
         pieText2.setVisible(false);
 
-        Rectangle busContainer = new Rectangle(100,50);
-        busContainer.setStyle("-fx-fill: #084a83;");
-        busContainer.setLayoutX(50);
+        String id_bus = "11241";
+        String Route = "1567-10";
+
+        Text busName = new Text("ID:" + id_bus + "Route:" + Route + "Status");
+        Rectangle busContainer = new Rectangle(925,5);
+
         busContainer.setLayoutY(50);
+        busName.setLayoutX(600);
+        busName.setLayoutY(700);
+        busContainer.setStyle("-fx-fill: #e8e8e8; ");
+        busContainer.setLayoutX(50);
+
+        VboxScroll.getChildren().add(busName);
+        VboxScroll.getChildren().add(busContainer);
+        VboxScroll.setSpacing(10);
+
     }
 
 
