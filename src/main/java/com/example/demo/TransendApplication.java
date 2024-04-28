@@ -13,7 +13,7 @@ import java.util.List;
 public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
-    Database database = new Database("jdbc:postgresql://localhost:5432/postgres", "postgres", "11@12B20c");
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
