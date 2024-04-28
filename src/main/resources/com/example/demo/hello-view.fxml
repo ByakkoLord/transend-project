@@ -147,7 +147,7 @@
    <ImageView disable="true" fitHeight="58.0" fitWidth="40.0" layoutX="139.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@assets/lines icon unselected.png" />
    </ImageView>
-   <Button layoutX="16.0" layoutY="274.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="81.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
+   <Button layoutX="16.0" layoutY="274.0" mnemonicParsing="false" onAction="#setGraphs" prefHeight="78.0" prefWidth="81.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
    <Text disable="true" fill="#5582a8" layoutX="28.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graphs" wrappingWidth="58.0">
       <font>
          <Font name="Nirmala UI Bold" size="17.0" />
@@ -232,7 +232,7 @@
        <NumberAxis side="LEFT" />
      </yAxis>
    </BarChart>
-   <ScrollPane layoutX="252.0" layoutY="336.0" prefHeight="452.0" prefWidth="961.0" style="-fx-background-color: #ffffff;" styleClass="busList" stylesheets="@fxmlStyle.css">
-      <VBox fx:id="VboxScroll" prefHeight="431.0" prefWidth="940.0" style="-fx-background-color: #ffffff;" />
+   <ScrollPane fx:id="scrollPane" layoutX="252.0" layoutY="336.0" prefHeight="452.0" prefWidth="961.0" style="-fx-background-color: #ffffff;" styleClass="busList" stylesheets="@fxmlStyle.css">
+      <VBox fx:id="VboxScroll" prefHeight="431.0" prefWidth="940.0" style="-fx-background-color: #ffffff;" stylesheets="@fxmlStyle.css" />
    </ScrollPane>
 </AnchorPane>
