@@ -97,9 +97,9 @@ public class TransendController {
     public void initializeGrafic() {
 
         if (!pieGrafic){
-            graf.getData().add(new PieChart.Data("Bus in Traffic", 540));
-            graf.getData().add(new PieChart.Data("Bus in Garage", 40));
-            graf.getData().add(new PieChart.Data("Bus in Maintence", 10));
+            graf.getData().add(0, new PieChart.Data("Bus in Traffic", 0));
+            graf.getData().add(1, new PieChart.Data("Bus in Garage", 0));
+            graf.getData().add(2, new PieChart.Data("Bus in Maintence", 0));
             pieGrafic = true;
 
             for (PieChart.Data data : graf.getData()) {
@@ -123,6 +123,28 @@ public class TransendController {
 
     }
 
+    public void atualizarGrafico(int active, int garage, int maintenance) {
+        graf.getData().set(0, new PieChart.Data("Bus in Traffic", active));
+        graf.getData().set(1, new PieChart.Data("Bus in Garage", garage));
+        graf.getData().set(2, new PieChart.Data("Bus in Maintence", maintenance));
+
+        for (PieChart.Data data : graf.getData()) {
+            String name = data.getName();
+            switch (name) {
+                case "Bus in Traffic":
+                    data.getNode().setStyle("-fx-pie-color: #084a83;");
+                    break;
+                case "Bus in Garage":
+                    data.getNode().setStyle("-fx-pie-color: #ff7f0e;");
+                    break;
+                case "Bus in Maintenance":
+                    data.getNode().setStyle("-fx-pie-color: #2ca02c;");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     public void Bus(int bus) {
         bus_state_one.setText(Integer.toString(bus));
     }
