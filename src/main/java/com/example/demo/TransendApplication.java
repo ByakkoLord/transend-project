@@ -27,16 +27,16 @@ public class TransendApplication extends Application {
         List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
         int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
 
-//        for (BusPosicaoResult.Linha linha : buses) {
-//            for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
-//                int idVeiculo = veiculo.p;
-//                String route_cod = linha.c;
-//                boolean pcd_v = veiculo.a;
-//
-//                System.out.println("ID do veículo: " + idVeiculo);
-//            }
-//        }
+/*        for (BusPosicaoResult.Linha linha : buses) {
+            for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
+                int idVeiculo = veiculo.p;
+                String route_cod = linha.c;
+                boolean pcd_v = veiculo.a;
 
+                System.out.println("ID do veículo: " + idVeiculo);
+            }
+        }
+*/
 
         TransendController controller = fxmlLoader.getController();
 
