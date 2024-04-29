@@ -3,9 +3,8 @@ package com.example.demo;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -14,6 +13,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 
 public class TransendController {
@@ -190,24 +191,41 @@ public class TransendController {
     }
 
 
-
-    public void setLinechart() {
-
-        // Criando o LineChart
-        LineChart mylineChart = linechart;
-
+    public void setLinechart(List<XYChart.Data<String, Number>> dados) {
         // Criando uma série de dados
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
 
-        // Adicionando dados à série
-        series.getData().add(new XYChart.Data<>(1, 10));
-        series.getData().add(new XYChart.Data<>(2, 20));
-        series.getData().add(new XYChart.Data<>(3, 15));
-        series.getData().add(new XYChart.Data<>(4, 25));
-        series.getData().add(new XYChart.Data<>(5, 30));
+//        // Adicionando dados à série
+//        series.getData().add(new XYChart.Data<>(1, 10));
+//        series.getData().add(new XYChart.Data<>(2, 20));
+//        series.getData().add(new XYChart.Data<>(3, 15));
+//        series.getData().add(new XYChart.Data<>(4, 25));
+//        series.getData().add(new XYChart.Data<>(5, 30));
+
+        for (XYChart.Data<String, Number> data : dados) {
+            series.getData().add(data);
+        }
+
+        linechart.getData().clear();
 
         // Adicionando a série ao LineChart
-        mylineChart.getData().add(series);
+        linechart.getData().add(series);
+    }
+
+    public void addToLinechart(XYChart.Data<String, Number> data) {
+        XYChart.Series<String, Number> series;
+
+        if (linechart.getData().size() == 0) {
+            series = new XYChart.Series<>();
+        } else {
+            series = (XYChart.Series<String, Number>) linechart.getData().get(0);
+        }
+
+        series.getData().add(data);
+
+        linechart.getData().clear();
+
+        linechart.getData().add(series);
     }
 
     public void setLinechart1() {

@@ -5,10 +5,13 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -31,30 +34,7 @@ public class TransendApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1259, 720);
 
-        List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
-        int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
-
-/*        for (BusPosicaoResult.Linha linha : buses) {
-            for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
-                int idVeiculo = veiculo.p;
-                String route_cod = linha.c;
-                boolean pcd_v = veiculo.a;
-
-                System.out.println("ID do veículo: " + idVeiculo);
-            }
-        }
-*/
-
-
-        TransendController controller = fxmlLoader.getController();
-
-        controller.updateBusCount(busCount);
-        controller.setLinechart();
-        controller.setLinechart1();
         controller = fxmlLoader.getController();
-
-        controller.atualizarGrafico(0, 0, 0);
-        //controller.setLinechart();
 
         scene.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
@@ -92,28 +72,42 @@ public class TransendApplication extends Application {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
             int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
 
-            Platform.runLater(() -> {
-                System.out.println("controller" + controller);
-                controller.updateBusCount(busCount);
-            });
+            Platform.runLater(() ->
+                    controller.updateBusCount(busCount)
+            );
 
             System.out.println("Contador atualizado, total onibus: " + busCount);
         }, 0, 20, TimeUnit.MINUTES);
     }
 
     public void inicializarMainGraphic() {
+        // Carregar dados da database
 
+
+        // Atualizar dados usando api
+        executorService.scheduleWithFixedDelay(() -> {
+            List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
+            int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
+            long now = Instant.now().getEpochSecond();
+
+            Platform.runLater(() ->
+                    controller.addToLinechart(new XYChart.Data<>(new SimpleDateFormat("HH.mm").format(now), busCount))
+            );
+
+            System.out.println("Grafico atualizado: " + now);
+        }, 0, 10, TimeUnit.MINUTES);
     }
 
     public void inicializarPizzaGraphic() {
+        controller.atualizarGrafico(0, 0, 0);
+
         executorService.scheduleWithFixedDelay(() -> {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
             int activeBuses = buses.stream().mapToInt(linha -> linha.vs.stream().filter(veiculo -> veiculo.a).toArray().length).sum();
 
-            Platform.runLater(() -> {
-                System.out.println("controller" + controller);
-                controller.atualizarGrafico(activeBuses, activeBuses - activeBuses / 5, 0);
-            });
+            Platform.runLater(() ->
+                    controller.atualizarGrafico(activeBuses, activeBuses - activeBuses / 5, 0)
+            );
 
             System.out.println("Grafico atualizado, onibus ativos: " + activeBuses);
         }, 0, 4, TimeUnit.MINUTES);
