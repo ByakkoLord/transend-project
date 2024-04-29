@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
     FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
     ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -48,7 +48,7 @@ public class TransendApplication extends Application {
 
         TransendController controller = fxmlLoader.getController();
 
-        controller.Bus(busCount);
+        controller.updateBusCount(busCount);
         controller.setLinechart();
         controller.setLinechart1();
         controller = fxmlLoader.getController();

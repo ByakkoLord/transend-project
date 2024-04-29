@@ -217,16 +217,17 @@ public class TransendController {
         LineChart mylineChart1 = linechart1;
 
         // Criando uma série de dados
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         // Adicionando dados à série
-        series.getData().add(new XYChart.Data<>(1, 200));
-        series.getData().add(new XYChart.Data<>(2, 100));
-        series.getData().add(new XYChart.Data<>(3, 700));
-        series.getData().add(new XYChart.Data<>(4, 400));
-        series.getData().add(new XYChart.Data<>(5, 1000));
-        series.getData().add(new XYChart.Data<>(6, 300));
-        series.getData().add(new XYChart.Data<>(7, 500));
+        series.getData().add(new XYChart.Data<>("Segunda-Feira", 200));
+        series.getData().add(new XYChart.Data<>("Terça-Feira", 300));
+        series.getData().add(new XYChart.Data<>("Quarta-Feira", 100));
+        series.getData().add(new XYChart.Data<>("Quinta-Feira", 600));
+        series.getData().add(new XYChart.Data<>("Sexta-Feira", 500));
+        series.getData().add(new XYChart.Data<>("Sabado", 900));
+        series.getData().add(new XYChart.Data<>("Domingo", 400));
+
 
         // Adicionando a série ao LineChart
         mylineChart1.getData().add(series);

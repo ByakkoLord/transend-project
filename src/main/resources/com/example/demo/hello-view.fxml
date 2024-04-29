@@ -20,6 +20,7 @@
 <?import javafx.scene.text.Text?>
 
 
+<?import javafx.scene.chart.CategoryAxis?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1259.0" stylesheets="@fxmlStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.TransendController">
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="769.0" layoutX="-3.0" layoutY="-18.0" stroke="#ffffff00" strokeType="INSIDE" width="1265.0" />
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e5f3ff" height="661.0" layoutY="158.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 30px; -fx-arc-height: 30px;" width="1259.0" />
@@ -283,7 +284,7 @@
       <children>
          <LineChart xAxis="" fx:id="linechart1" layoutX="10.0" layoutY="14.0" prefHeight="310.0" prefWidth="492.0">
             <xAxis>
-               <NumberAxis side="BOTTOM" />
+               <CategoryAxis side="BOTTOM" />
             </xAxis>
             <yAxis>
                <NumberAxis side="BOTTOM" />
