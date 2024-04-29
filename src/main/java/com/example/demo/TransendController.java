@@ -1,17 +1,16 @@
 package com.example.demo;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.chart.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class TransendController {
@@ -87,43 +86,15 @@ public class TransendController {
     @FXML
     public void initialize(int bus) {
         Bus(bus);
-}
-
-
-
-
-    boolean pieGrafic = false;
-    @FXML
-    public void initializeGrafic() {
-
-        if (!pieGrafic){
-            graf.getData().add(0, new PieChart.Data("Bus in Traffic", 0));
-            graf.getData().add(1, new PieChart.Data("Bus in Garage", 0));
-            graf.getData().add(2, new PieChart.Data("Bus in Maintence", 0));
-            pieGrafic = true;
-
-            for (PieChart.Data data : graf.getData()) {
-                String name = data.getName();
-                switch (name) {
-                    case "Bus in Traffic":
-                        data.getNode().setStyle("-fx-pie-color: #084a83;");
-                        break;
-                    case "Bus in Garage":
-                        data.getNode().setStyle("-fx-pie-color: #ff7f0e;");
-                        break;
-                    case "Bus in Maintenance":
-                        data.getNode().setStyle("-fx-pie-color: #2ca02c;");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-
     }
 
     public void atualizarGrafico(int active, int garage, int maintenance) {
+        if (graf.getData().isEmpty()) {
+            graf.getData().add(0, new PieChart.Data("Bus in Traffic", active));
+            graf.getData().add(1, new PieChart.Data("Bus in Garage", garage));
+            graf.getData().add(2, new PieChart.Data("Bus in Maintence", maintenance));
+        }
+
         graf.getData().set(0, new PieChart.Data("Bus in Traffic", active));
         graf.getData().set(1, new PieChart.Data("Bus in Garage", garage));
         graf.getData().set(2, new PieChart.Data("Bus in Maintence", maintenance));
@@ -145,6 +116,7 @@ public class TransendController {
             }
         }
     }
+
     public void Bus(int bus) {
         bus_state_one.setText(Integer.toString(bus));
     }
@@ -158,7 +130,7 @@ public class TransendController {
         stage.setIconified(true);
     }
 
-    public void setGraphs(){
+    public void setGraphs() {
         unshowContent();
         graphBox1.setVisible(true);
         graphBox.setVisible(true);
@@ -178,7 +150,7 @@ public class TransendController {
         pieText2.setVisible(true);
     }
 
-    public void unshowContent(){
+    public void unshowContent() {
         graphBox1.setVisible(false);
         settingsPane.setVisible(false);
         scrollPane.setVisible(false);
@@ -199,13 +171,13 @@ public class TransendController {
         pieText2.setVisible(false);
     }
 
-    public void setSettings(){
+    public void setSettings() {
         unshowContent();
         settingsPane.setVisible(true);
 
     }
 
-    public void setRoutes(){
+    public void setRoutes() {
         unshowContent();
         scrollPane.setVisible(true);
 
@@ -219,7 +191,7 @@ public class TransendController {
                 + Route +
                 "                                  Status:  "
                 + status);
-        Rectangle busContainer = new Rectangle(910,5);
+        Rectangle busContainer = new Rectangle(910, 5);
 
         busName.setStyle("-fx-font: 20 arial; -fx-fill: #acacac");
 

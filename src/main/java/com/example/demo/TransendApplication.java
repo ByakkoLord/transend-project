@@ -38,14 +38,11 @@ public class TransendApplication extends Application {
 //        }
 
 
-
-
-
         TransendController controller = fxmlLoader.getController();
 
         controller.Bus(busCount);
-        controller.initializeGrafic();
 
+        controller.atualizarGrafico(0, 0, 0);
         controller.atualizarGrafico(300, 20, 1);
         controller.atualizarGrafico(20, 3, 1);
 
