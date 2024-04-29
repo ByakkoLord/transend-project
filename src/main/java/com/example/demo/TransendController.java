@@ -2,6 +2,9 @@ package com.example.demo;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -25,6 +28,9 @@ public class TransendController {
 
     @FXML
     public Rectangle graphBox1;
+
+    @FXML
+    public LineChart linechart;
 
     @FXML
     private ScrollPane scrollPane;
@@ -135,7 +141,7 @@ public class TransendController {
         graphBox1.setVisible(true);
         graphBox.setVisible(true);
         graf.setVisible(true);
-        barChart.setVisible(true);
+        linechart.setVisible(true);
         baricon.setVisible(true);
         baricon1.setVisible(true);
         baricon2.setVisible(true);
@@ -156,7 +162,7 @@ public class TransendController {
         scrollPane.setVisible(false);
         graphBox.setVisible(false);
         graf.setVisible(false);
-        barChart.setVisible(false);
+        linechart.setVisible(false);
         baricon.setVisible(false);
         baricon1.setVisible(false);
         baricon2.setVisible(false);
@@ -175,6 +181,27 @@ public class TransendController {
         unshowContent();
         settingsPane.setVisible(true);
 
+    }
+
+
+
+    public void setLinechart() {
+
+        // Criando o LineChart
+        LineChart mylineChart = linechart;
+
+        // Criando uma série de dados
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+
+        // Adicionando dados à série
+        series.getData().add(new XYChart.Data<>(1, 10));
+        series.getData().add(new XYChart.Data<>(2, 20));
+        series.getData().add(new XYChart.Data<>(3, 15));
+        series.getData().add(new XYChart.Data<>(4, 25));
+        series.getData().add(new XYChart.Data<>(5, 30));
+
+        // Adicionando a série ao LineChart
+        mylineChart.getData().add(series);
     }
 
     public void setRoutes() {

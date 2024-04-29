@@ -13,7 +13,7 @@ import java.util.List;
 public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
@@ -38,9 +38,11 @@ public class TransendApplication extends Application {
         }
 */
 
+
         TransendController controller = fxmlLoader.getController();
 
         controller.Bus(busCount);
+        controller.setLinechart();
 
         controller.atualizarGrafico(0, 0, 0);
         controller.atualizarGrafico(300, 20, 1);
