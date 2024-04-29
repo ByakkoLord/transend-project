@@ -1,5 +1,5 @@
 package com.example.demo;
-
+import io.github.cdimascio.dotenv.Dotenv;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import okhttp3.*;
@@ -22,6 +22,13 @@ public class SPTransAPI {
 
         try (Response response = client.newCall(request).execute()) {
             ResponseBody body = response.body();
+
+            Dotenv dotenv = Dotenv.load();
+            Database consult = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
+
+
+
+            consult.sendBus(3, "132", "true", 1, 1, 1, 1);
 
             if (!response.isSuccessful() || body == null || !body.string().equals("true")) {
                 throw new Error("Falha ao autenticar com api sptrans");
@@ -51,6 +58,9 @@ public class SPTransAPI {
         } catch (Error e) {
             System.out.println(e.getMessage());
         }
+
+
+
 
         return null;
     }

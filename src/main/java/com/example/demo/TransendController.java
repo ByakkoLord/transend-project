@@ -16,6 +16,18 @@ import javafx.scene.text.Text;
 
 public class TransendController {
     @FXML
+    public Text settingsTitle;
+
+    @FXML
+    public Text language;
+
+    @FXML
+    public AnchorPane settingsPane;
+
+    @FXML
+    public Rectangle graphBox1;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML
@@ -125,7 +137,8 @@ public class TransendController {
     }
 
     public void setGraphs(){
-        scrollPane.setVisible(false);
+        unshowContent();
+        graphBox1.setVisible(true);
         graphBox.setVisible(true);
         graf.setVisible(true);
         barChart.setVisible(true);
@@ -143,8 +156,10 @@ public class TransendController {
         pieText2.setVisible(true);
     }
 
-    public void setRoutes(){
-        scrollPane.setVisible(true);
+    public void unshowContent(){
+        graphBox1.setVisible(false);
+        settingsPane.setVisible(false);
+        scrollPane.setVisible(false);
         graphBox.setVisible(false);
         graf.setVisible(false);
         barChart.setVisible(false);
@@ -160,12 +175,31 @@ public class TransendController {
         pieText.setVisible(false);
         pieText1.setVisible(false);
         pieText2.setVisible(false);
+    }
+
+    public void setSettings(){
+        unshowContent();
+        settingsPane.setVisible(true);
+
+    }
+
+    public void setRoutes(){
+        unshowContent();
+        scrollPane.setVisible(true);
+
 
         String id_bus = "11241";
         String Route = "1567-10";
+        String status = "In Traffic";
 
-        Text busName = new Text("ID:" + id_bus + "Route:" + Route + "Status");
-        Rectangle busContainer = new Rectangle(925,5);
+        Text busName = new Text("     ID:  " + id_bus
+                + "                                               Route:  "
+                + Route +
+                "                                  Status:  "
+                + status);
+        Rectangle busContainer = new Rectangle(910,5);
+
+        busName.setStyle("-fx-font: 20 arial; -fx-fill: #acacac");
 
         busContainer.setLayoutY(50);
         busName.setLayoutX(600);
@@ -178,6 +212,5 @@ public class TransendController {
         VboxScroll.setSpacing(10);
 
     }
-
 
 }

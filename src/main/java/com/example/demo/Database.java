@@ -17,17 +17,18 @@ public class Database {
         }
     }
 
-    public int getBus() {
-        String query = "select * from bus";
+    public void sendBus(int id_bus, String route_cod, String pcd_v, int avg_speed, int arrival, int a_date, int info_hr) {
+        String query = "insert into bus_info (id_bus, route_cod, arrival, a_date, pcd_v, info_hr, avg_speed) values (" +
+                id_bus + ", '" + route_cod + "', " + arrival + ", " + a_date + ", '" + pcd_v + "', " + info_hr + ", " + avg_speed + ")";
 
         try {
             Statement statement = this.connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            resultSet.next();
-            return resultSet.getInt("bus");
+            int rowsAffected = statement.executeUpdate(query);
+            connection.close();
+            System.out.println(rowsAffected + " linha(s) inserida(s)");
         } catch(SQLException e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
-            return -1;
         }
     }
+
 }
