@@ -13,7 +13,7 @@ import java.util.List;
 public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
@@ -25,19 +25,17 @@ public class TransendApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1259, 821);
 
         List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
-
         int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
-        for (BusPosicaoResult.Linha linha : buses) {
-            for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
-                int idVeiculo = veiculo.p;
-                String route_cod = linha.c;
-                boolean pcd_v = veiculo.a;
 
-
-                database.sendBus(idVeiculo, route_cod, pcd_v, 1, 1, 1, 1);
-                System.out.println("ID do veículo: " + idVeiculo);
-            }
-        }
+//        for (BusPosicaoResult.Linha linha : buses) {
+//            for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
+//                int idVeiculo = veiculo.p;
+//                String route_cod = linha.c;
+//                boolean pcd_v = veiculo.a;
+//
+//                System.out.println("ID do veículo: " + idVeiculo);
+//            }
+//        }
 
 
 
@@ -46,10 +44,10 @@ public class TransendApplication extends Application {
         TransendController controller = fxmlLoader.getController();
 
         controller.Bus(busCount);
-
-
         controller.initializeGrafic();
 
+        controller.atualizarGrafico(300, 20, 1);
+        controller.atualizarGrafico(20, 3, 1);
 
         scene.setOnMousePressed(event -> {
             xOffset = event.getSceneX();

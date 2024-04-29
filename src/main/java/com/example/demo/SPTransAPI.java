@@ -36,10 +36,6 @@ public class SPTransAPI {
 
 
     public BusPosicaoResult getAllBuses() {
-    /*    Request request1 = new Request.Builder()
-                .url(apiUrl + "/Previsao?codigoParada={codigoParada}&codigoLinha={codigoLinha}")
-                .build();
-*/
         Request request = new Request.Builder()
                 .url(apiUrl + "/posicao")
                 .build();
@@ -57,10 +53,6 @@ public class SPTransAPI {
         } catch (Error e) {
             System.out.println(e.getMessage());
         }
-
-
-
-
 
         return null;
     }
