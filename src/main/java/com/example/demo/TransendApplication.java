@@ -20,6 +20,7 @@ public class TransendApplication extends Application {
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
     FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
     ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+    TransendController controller;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -29,14 +30,10 @@ public class TransendApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1259, 720);
 
-        TransendController controller = fxmlLoader.getController();
+        controller = fxmlLoader.getController();
 
         controller.atualizarGrafico(0, 0, 0);
-        controller.setLinechart();
-
-        inicializarBusCount();
-        inicializarMainGraphic();
-        inicializarPizzaGraphic();
+        //controller.setLinechart();
 
         scene.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
@@ -63,16 +60,22 @@ public class TransendApplication extends Application {
         stage.setTitle("Transend");
         stage.setScene(scene);
         stage.show();
+
+        inicializarBusCount();
+        inicializarMainGraphic();
+        inicializarPizzaGraphic();
     }
 
     public void inicializarBusCount() {
-        TransendController controller = fxmlLoader.getController();
-
         executorService.scheduleWithFixedDelay(() -> {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
             int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
 
-            Platform.runLater(() -> controller.updateBusCount(busCount));
+            Platform.runLater(() -> {
+                System.out.println("controller" + controller);
+                controller.updateBusCount(busCount);
+            });
+
             System.out.println("Contador atualizado, total onibus: " + busCount);
         }, 0, 20, TimeUnit.MINUTES);
     }
@@ -82,13 +85,15 @@ public class TransendApplication extends Application {
     }
 
     public void inicializarPizzaGraphic() {
-        TransendController controller = fxmlLoader.getController();
-
         executorService.scheduleWithFixedDelay(() -> {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
             int activeBuses = buses.stream().mapToInt(linha -> linha.vs.stream().filter(veiculo -> veiculo.a).toArray().length).sum();
 
-            Platform.runLater(() -> controller.atualizarGrafico(activeBuses, activeBuses - activeBuses / 5, 0));
+            Platform.runLater(() -> {
+                System.out.println("controller" + controller);
+                controller.atualizarGrafico(activeBuses, activeBuses - activeBuses / 5, 0);
+            });
+
             System.out.println("Grafico atualizado, onibus ativos: " + activeBuses);
         }, 0, 4, TimeUnit.MINUTES);
     }
