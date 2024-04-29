@@ -1,31 +1,42 @@
 package com.example.demo;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 
 public class Database {
 
     private Connection connection;
+    ScheduledFuture<?> future;
 
     public Database(String url, String user, String password) {
         System.out.println("db " + url);
         System.out.println("user " + user);
         System.out.println("pass " + password);
 
-        while (this.connection == null) {
-            try {
-                try {
-                    this.connection = DriverManager.getConnection(url, user, password);
-                } catch(SQLException e) {
-                    System.out.println("deu ruim 2: " + e.toString());
-                }
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                System.out.println("deu ruim 3: " + e.toString());
-            }
+        future = executorService.scheduleAtFixedRate(() -> this.connectToDatabase(url, user, password), 0, 1, TimeUnit.SECONDS);
+    }
+
+    private void connectToDatabase(String url, String user, String password) {
+        if (this.connection != null) {
+            future.cancel(true);
+            return;
+        }
+
+        try {
+            this.connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Conectado com sucesso");
+        } catch (SQLException e) {
+            System.out.println("Failed to connect to database: " + e.toString());
         }
     }
 
@@ -43,7 +54,7 @@ public class Database {
             int rowsAffected = statement.executeUpdate(query);
             connection.close();
             System.out.println(rowsAffected + " linha(s) inserida(s)");
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
