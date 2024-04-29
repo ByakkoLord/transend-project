@@ -15,6 +15,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TransendApplication extends Application {
+
     Dotenv dotenv = Dotenv.load();
     Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
@@ -30,6 +31,26 @@ public class TransendApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1259, 720);
 
+        List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
+        int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
+
+/*        for (BusPosicaoResult.Linha linha : buses) {
+            for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
+                int idVeiculo = veiculo.p;
+                String route_cod = linha.c;
+                boolean pcd_v = veiculo.a;
+
+                System.out.println("ID do veículo: " + idVeiculo);
+            }
+        }
+*/
+
+
+        TransendController controller = fxmlLoader.getController();
+
+        controller.Bus(busCount);
+        controller.setLinechart();
+        controller.setLinechart1();
         controller = fxmlLoader.getController();
 
         controller.atualizarGrafico(0, 0, 0);

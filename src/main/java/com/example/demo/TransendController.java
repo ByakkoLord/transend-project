@@ -33,6 +33,14 @@ public class TransendController {
     public LineChart linechart;
 
     @FXML
+    public LineChart linechart1;
+
+    @FXML
+    public AnchorPane anchorPane1;
+
+    public Rectangle graphBox2;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML
@@ -157,7 +165,10 @@ public class TransendController {
         scrollPane.setVisible(false);
         graphBox.setVisible(false);
         graf.setVisible(false);
+        graphBox2.setVisible(false);
         linechart.setVisible(false);
+        linechart1.setVisible(false);
+        anchorPane1.setVisible(false);
         baricon.setVisible(false);
         baricon1.setVisible(false);
         baricon2.setVisible(false);
@@ -199,26 +210,50 @@ public class TransendController {
         mylineChart.getData().add(series);
     }
 
+    public void setLinechart1() {
+        // Criando o LineChart
+
+
+        LineChart mylineChart1 = linechart1;
+
+        // Criando uma série de dados
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+
+        // Adicionando dados à série
+        series.getData().add(new XYChart.Data<>(1, 200));
+        series.getData().add(new XYChart.Data<>(2, 100));
+        series.getData().add(new XYChart.Data<>(3, 700));
+        series.getData().add(new XYChart.Data<>(4, 400));
+        series.getData().add(new XYChart.Data<>(5, 1000));
+        series.getData().add(new XYChart.Data<>(6, 300));
+        series.getData().add(new XYChart.Data<>(7, 500));
+
+        // Adicionando a série ao LineChart
+        mylineChart1.getData().add(series);
+    }
+
+
     public void setRoutes() {
         unshowContent();
         scrollPane.setVisible(true);
+        linechart1.setVisible(true);
+        graphBox2.setVisible(true);
+        anchorPane1.setVisible(true);
 
 
-        String id_bus = "11241";
+
         String Route = "1567-10";
-        String status = "In Traffic";
 
-        Text busName = new Text("     ID:  " + id_bus
-                + "                                               Route:  "
-                + Route +
-                "                                  Status:  "
-                + status);
-        Rectangle busContainer = new Rectangle(910, 5);
+        double passagers = Math.random();
+
+
+        Text busName = new Text("Route: " + Route);
+        Rectangle busContainer = new Rectangle(310, 5);
 
         busName.setStyle("-fx-font: 20 arial; -fx-fill: #acacac");
 
         busContainer.setLayoutY(50);
-        busName.setLayoutX(600);
+        busName.setLayoutX(320);
         busName.setLayoutY(700);
         busContainer.setStyle("-fx-fill: #e8e8e8; ");
         busContainer.setLayoutX(50);
