@@ -36,7 +36,7 @@ public class Database {
             this.connection = DriverManager.getConnection(url, user, password);
             System.out.println("Conectado com sucesso");
         } catch (SQLException e) {
-            System.out.println("Failed to connect to database: " + e.toString());
+            System.out.println("Failed to connect to database: " + e);
         }
     }
 
@@ -52,11 +52,17 @@ public class Database {
         try {
             Statement statement = this.connection.createStatement();
             int rowsAffected = statement.executeUpdate(query);
-            connection.close();
             System.out.println(rowsAffected + " linha(s) inserida(s)");
         } catch (SQLException e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
 
+    public void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("Failed to close db connection: " + e);
+        }
+    }
 }

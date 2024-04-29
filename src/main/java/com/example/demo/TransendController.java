@@ -89,11 +89,6 @@ public class TransendController {
     @FXML
     private Text pieText2;
 
-    @FXML
-    public void initialize(int bus) {
-        Bus(bus);
-    }
-
     public void atualizarGrafico(int active, int garage, int maintenance) {
         if (graf.getData().isEmpty()) {
             graf.getData().add(0, new PieChart.Data("Bus in Traffic", active));
@@ -123,7 +118,7 @@ public class TransendController {
         }
     }
 
-    public void Bus(int bus) {
+    public void updateBusCount(int bus) {
         bus_state_one.setText(Integer.toString(bus));
     }
 
