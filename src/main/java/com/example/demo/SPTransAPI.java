@@ -23,12 +23,6 @@ public class SPTransAPI {
         try (Response response = client.newCall(request).execute()) {
             ResponseBody body = response.body();
 
-            Dotenv dotenv = Dotenv.load();
-            Database consult = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
-
-
-
-            consult.sendBus(3, "132", "true", 1, 1, 1, 1);
 
             if (!response.isSuccessful() || body == null || !body.string().equals("true")) {
                 throw new Error("Falha ao autenticar com api sptrans");
@@ -40,7 +34,12 @@ public class SPTransAPI {
         }
     }
 
+
     public BusPosicaoResult getAllBuses() {
+    /*    Request request1 = new Request.Builder()
+                .url(apiUrl + "/Previsao?codigoParada={codigoParada}&codigoLinha={codigoLinha}")
+                .build();
+*/
         Request request = new Request.Builder()
                 .url(apiUrl + "/posicao")
                 .build();
@@ -62,6 +61,9 @@ public class SPTransAPI {
 
 
 
+
         return null;
     }
+
+
 }

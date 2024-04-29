@@ -14,8 +14,6 @@ public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
     Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
-
-
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
@@ -28,16 +26,20 @@ public class TransendApplication extends Application {
 
         List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
 
-
         int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
         for (BusPosicaoResult.Linha linha : buses) {
             for (BusPosicaoResult.Veiculo veiculo : linha.vs) {
                 int idVeiculo = veiculo.p;
+                String route_cod = linha.c;
+                boolean pcd_v = veiculo.a;
+
+
+                database.sendBus(idVeiculo, route_cod, pcd_v, 1, 1, 1, 1);
                 System.out.println("ID do veículo: " + idVeiculo);
             }
         }
 
-        database.sendBus(3, "132", "true", 1, 1, 1, 1);
+
 
 
 

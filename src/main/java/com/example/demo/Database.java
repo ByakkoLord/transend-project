@@ -17,7 +17,7 @@ public class Database {
         }
     }
 
-    public void sendBus(int id_bus, String route_cod, String pcd_v, int avg_speed, int arrival, int a_date, int info_hr) {
+    public void sendBus(int id_bus, String route_cod, Boolean pcd_v, int avg_speed, int arrival, int a_date, int info_hr) {
         String query = "insert into bus_info (id_bus, route_cod, arrival, a_date, pcd_v, info_hr, avg_speed) values (" +
                 id_bus + ", '" + route_cod + "', " + arrival + ", " + a_date + ", '" + pcd_v + "', " + info_hr + ", " + avg_speed + ")";
 
