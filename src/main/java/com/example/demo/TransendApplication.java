@@ -13,7 +13,7 @@ import java.util.List;
 public class TransendApplication extends Application {
 
     Dotenv dotenv = Dotenv.load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
 
     private double xOffset = 0;
@@ -22,7 +22,7 @@ public class TransendApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1259, 821);
+        Scene scene = new Scene(fxmlLoader.load(), 1259, 720);
 
         List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
         int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
