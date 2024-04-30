@@ -105,23 +105,7 @@ public class TransendApplication extends Application {
         executorService.scheduleWithFixedDelay(() -> {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
 
-            for (BusPosicaoResult.Linha linha : buses) {
 
-
-                String route = linha.c;
-                double min = 2000;
-                double max = 5000;
-                double passagers = Math.round(Math.random() * (max - min)) + min;
-
-                System.out.println("Rota: " + route + " Passageiros: " + passagers);
-
-                    Platform.runLater(() ->
-                            controller.setRouteChart(route, passagers)
-                    );
-
-
-
-            }
             int activeBuses = buses.stream().mapToInt(linha -> linha.vs.stream().filter(veiculo -> veiculo.a).toArray().length).sum();
 
             Platform.runLater(() ->
@@ -130,7 +114,33 @@ public class TransendApplication extends Application {
 
             System.out.println("Grafico atualizado, onibus ativos: " + activeBuses);
         }, 0, 4, TimeUnit.MINUTES);
+
+        List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
+        for (BusPosicaoResult.Linha linha : buses1) {
+
+
+            String route = linha.c;
+            int busPerRoute = linha.qv;
+            double min = 10;
+            double max = 1000;
+            double passagers = Math.round(Math.random() * (max - min)) + min;
+
+            System.out.println("Rota: " + route + " Passageiros: " + passagers);
+
+            Platform.runLater(() ->
+                    controller.setRouteChart(route, passagers)
+            );
+
+            Platform.runLater(() ->
+                    controller.busBot(passagers, busPerRoute, route)
+            );
+
+
+
+
+        }
     }
+
 
     public static void main(String[] args) {
         launch();

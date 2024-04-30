@@ -8,6 +8,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -48,6 +49,9 @@ public class TransendController {
 
     @FXML
     public AnchorPane anchorPane2;
+
+    @FXML
+    public TextArea textArea;
 
     @FXML
     private ScrollPane scrollPane;
@@ -180,6 +184,7 @@ public class TransendController {
         linechart.setVisible(false);
         linechart1.setVisible(false);
         anchorPane1.setVisible(false);
+        anchorPane2.setVisible(false);
         baricon.setVisible(false);
         baricon1.setVisible(false);
         baricon2.setVisible(false);
@@ -194,9 +199,9 @@ public class TransendController {
         pieText2.setVisible(false);
     }
 
-    public void setSettings() {
+    public void setHistory() {
         unshowContent();
-        settingsPane.setVisible(true);
+        anchorPane2.setVisible(true);
 
     }
 
@@ -265,11 +270,42 @@ public class TransendController {
 
     public void setRoutes() {
         unshowContent();
-        anchorPane2.setVisible(true);
         scrollPane.setVisible(true);
         linechart1.setVisible(true);
         graphBox2.setVisible(true);
         anchorPane1.setVisible(true);
+    }
+    int busStock = 0;
+    public void busBot(Double passagers, int busPerRoute, String route) {
+        int busLimit = 60;
+        int busPassagersCount = busLimit * busPerRoute;
+        System.out.println("Passageiros" + passagers
+        );
+        System.out.println("Antes "+busPassagersCount);
+
+        int busOut = 0;
+        int busIn = 0;
+        for (; passagers < busPassagersCount && (busPerRoute > 1); busPerRoute--) {
+            busPassagersCount = busLimit * busPerRoute;
+            System.out.println("Retirou "+busPassagersCount);
+            busStock++;
+            busOut++;
+
+
+        }
+        System.out.println("BusStock "+busStock);
+
+        for (; passagers > busPassagersCount && (busPerRoute > 1) && busStock > 0; busPerRoute++){
+            busPassagersCount = busLimit * busPerRoute;
+            System.out.println("Adicionou "+busPassagersCount);
+            busStock--;
+            busIn++;
+        }
+
+        StringBuilder sb = new StringBuilder(textArea.getText());
+        sb.append("Retirar " + busOut + " ônibus --- " + "Adicionar " + busIn + " ônibus" + " LINHA (" + route + ")").append("\n");
+        textArea.setText(sb.toString());
+
     }
 
     public void setRouteChart(String route, Double passagers){

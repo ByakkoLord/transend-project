@@ -33,7 +33,7 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Button layoutX="25.0" layoutY="168.0" mnemonicParsing="false" onAction="#setGraphs" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
+   <Button fx:id="historyButton" layoutX="25.0" layoutY="168.0" mnemonicParsing="false" onAction="#setHistory" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
    <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="144.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@assets/bus icon.png" />
    </ImageView>
@@ -50,10 +50,10 @@
          <Font name="Nirmala UI Bold" size="18.0" />
       </font>
    </Text>
-   <ImageView fitHeight="40.0" fitWidth="66.0" layoutX="24.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView disable="true" fitHeight="40.0" fitWidth="66.0" layoutX="24.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@assets/settings%20icon%20unselected.png" />
    </ImageView>
-   <Text fill="#084a83" layoutX="92.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico" wrappingWidth="88.00000000000006">
+   <Text disable="true" fill="#084a83" layoutX="92.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico" wrappingWidth="88.00000000000006">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
       </font>
@@ -237,9 +237,9 @@
          <Font name="Nirmala UI Bold" size="30.0" />
       </font>
    </Label>
-   <AnchorPane fx:id="anchorPane2" layoutX="354.0" layoutY="197.0" prefHeight="376.0" prefWidth="764.0">
+   <AnchorPane fx:id="anchorPane2" layoutX="354.0" layoutY="197.0" prefHeight="376.0" prefWidth="764.0" visible="false">
       <children>
-         <Rectangle fx:id="graphBox11" arcHeight="5.0" arcWidth="5.0" fill="#797979" height="376.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="764.0">
+         <Rectangle fx:id="graphBox11" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="376.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="764.0">
             <effect>
                <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
                   <color>
@@ -248,12 +248,12 @@
                </DropShadow>
             </effect>
          </Rectangle>
-         <Text fill="WHITE" layoutX="329.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico" wrappingWidth="106.34765624999989">
+         <Text fill="#084a83" layoutX="329.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico" wrappingWidth="106.34765624999989">
             <font>
                <Font name="Nirmala UI Bold" size="24.0" />
             </font>
          </Text>
-         <TextArea layoutX="32.0" layoutY="52.0" prefHeight="310.0" prefWidth="701.0" promptText="asdadsd" style="-fx-background-color: black;" styleClass="history" stylesheets="@fxmlStyle.css" />
+         <TextArea fx:id="textArea" layoutX="32.0" layoutY="52.0" prefHeight="310.0" prefWidth="701.0" promptText="Suas instruções vão aparecer aqui, aguarde..." style="-fx-background-color: black;" styleClass="" stylesheets="@fxmlStyle.css" />
       </children>
    </AnchorPane>
 </AnchorPane>
