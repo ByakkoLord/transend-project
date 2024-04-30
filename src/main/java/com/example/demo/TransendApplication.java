@@ -19,8 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 public class TransendApplication extends Application {
 
-    Dotenv dotenv = new Env().load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
+    Dotenv dotenv = Dotenv.load();
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
     FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
     ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -115,30 +115,8 @@ public class TransendApplication extends Application {
             System.out.println("Grafico atualizado, onibus ativos: " + activeBuses);
         }, 0, 4, TimeUnit.MINUTES);
 
-        List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
-        for (BusPosicaoResult.Linha linha : buses1) {
 
 
-            String route = linha.c;
-            int busPerRoute = linha.qv;
-            double min = 10;
-            double max = 1000;
-            double passagers = Math.round(Math.random() * (max - min)) + min;
-
-            System.out.println("Rota: " + route + " Passageiros: " + passagers);
-
-            Platform.runLater(() ->
-                    controller.setRouteChart(route, passagers)
-            );
-
-            Platform.runLater(() ->
-                    controller.busBot(passagers, busPerRoute, route)
-            );
-
-
-
-
-        }
     }
 
 

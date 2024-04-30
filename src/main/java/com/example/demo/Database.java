@@ -40,9 +40,9 @@ public class Database {
         }
     }
 
-    public void sendBus(int id_bus, String route_cod, Boolean pcd_v, int avg_speed, int arrival, int a_date, int info_hr) {
-        String query = "insert into bus_info (id_bus, route_cod, arrival, a_date, pcd_v, info_hr, avg_speed) values (" +
-                id_bus + ", '" + route_cod + "', " + arrival + ", " + a_date + ", '" + pcd_v + "', " + info_hr + ", " + avg_speed + ")";
+
+    public void sendBus(int id_bus, String route_cod, boolean pcd_v, String reordered_time) {
+        String query = "insert into bus_info (id_bus, route_cod, pcd_v, reordered_time) values(2, 1231, true, 123)";
 
         if (this.connection == null) {
             System.out.println("Connection object is null");

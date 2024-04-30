@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import io.github.cdimascio.dotenv.Dotenv;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
@@ -307,6 +309,38 @@ public class TransendController {
         textArea.setText(sb.toString());
 
     }
+    Dotenv dotenv = Dotenv.load();
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
+    SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
+
+    public void initBusBot(){
+        List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
+
+        for (BusPosicaoResult.Linha linha : buses1) {
+
+
+            String route = linha.c;
+            int busPerRoute = linha.qv;
+            double min = 10;
+            double max = 1000;
+            double passagers = Math.round(Math.random() * (max - min)) + min;
+
+            System.out.println("Rota: " + route + " Passageiros: " + passagers);
+
+            Platform.runLater(() ->
+                    setRouteChart(route, passagers)
+            );
+
+            Platform.runLater(() ->
+                    busBot(passagers, busPerRoute, route)
+            );
+
+            database.sendBus(1, route, false, "2021-10-10 10:10:10");
+
+        }
+    }
+
+
 
     public void setRouteChart(String route, Double passagers){
         Button busContainer = new Button("Route" + route + " - " + passagers + " Passagers");
