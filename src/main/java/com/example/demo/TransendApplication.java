@@ -32,7 +32,7 @@ public class TransendApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1259, 720);
+        Scene scene = new Scene(fxmlLoader.load(), 1259, 650);
 
         controller = fxmlLoader.getController();
 
@@ -57,7 +57,7 @@ public class TransendApplication extends Application {
         stage.initStyle(javafx.stage.StageStyle.UNDECORATED);
 
         stage.setMaxWidth(1259);
-        stage.setMaxHeight(821);
+        stage.setMaxHeight(721);
         stage.setTitle("Transend");
         stage.setScene(scene);
         stage.show();
@@ -70,6 +70,7 @@ public class TransendApplication extends Application {
     public void inicializarBusCount() {
         executorService.scheduleWithFixedDelay(() -> {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
+
             int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
 
             Platform.runLater(() ->
@@ -103,6 +104,24 @@ public class TransendApplication extends Application {
 
         executorService.scheduleWithFixedDelay(() -> {
             List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
+
+            for (BusPosicaoResult.Linha linha : buses) {
+
+
+                String route = linha.c;
+                double min = 2000;
+                double max = 5000;
+                double passagers = Math.round(Math.random() * (max - min)) + min;
+
+                System.out.println("Rota: " + route + " Passageiros: " + passagers);
+
+                    Platform.runLater(() ->
+                            controller.setRouteChart(route, passagers)
+                    );
+
+
+
+            }
             int activeBuses = buses.stream().mapToInt(linha -> linha.vs.stream().filter(veiculo -> veiculo.a).toArray().length).sum();
 
             Platform.runLater(() ->

@@ -5,6 +5,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
@@ -39,7 +40,14 @@ public class TransendController {
     @FXML
     public AnchorPane anchorPane1;
 
+    @FXML
     public Rectangle graphBox2;
+
+    @FXML
+    public Label bus_state_one1;
+
+    @FXML
+    public AnchorPane anchorPane2;
 
     @FXML
     private ScrollPane scrollPane;
@@ -126,9 +134,11 @@ public class TransendController {
             }
         }
     }
-
+    int totalBus = 13000;
     public void updateBusCount(int bus) {
+
         bus_state_one.setText(Integer.toString(bus));
+        bus_state_one1.setText(Integer.toString(totalBus - bus));
     }
 
     public void setClose() {
@@ -228,9 +238,7 @@ public class TransendController {
         linechart.getData().add(series);
     }
 
-    public void setLinechart1() {
-        // Criando o LineChart
-
+    public void setLinechart1(String day1 , String day2, String day3, String day4, String day5, String day6, String day7, Double dayPas1, Double dayPas2, Double dayPas3, Double dayPas4, Double dayPas5, Double dayPas6, Double dayPas7) {
 
         LineChart mylineChart1 = linechart1;
 
@@ -238,49 +246,75 @@ public class TransendController {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
         // Adicionando dados à série
-        series.getData().add(new XYChart.Data<>("Segunda-Feira", 200));
-        series.getData().add(new XYChart.Data<>("Terça-Feira", 300));
-        series.getData().add(new XYChart.Data<>("Quarta-Feira", 100));
-        series.getData().add(new XYChart.Data<>("Quinta-Feira", 600));
-        series.getData().add(new XYChart.Data<>("Sexta-Feira", 500));
-        series.getData().add(new XYChart.Data<>("Sabado", 900));
-        series.getData().add(new XYChart.Data<>("Domingo", 400));
+        series.getData().add(new XYChart.Data<>(day1, dayPas1));
+        series.getData().add(new XYChart.Data<>(day2, dayPas2));
+        series.getData().add(new XYChart.Data<>(day3, dayPas3));
+        series.getData().add(new XYChart.Data<>(day4, dayPas4));
+        series.getData().add(new XYChart.Data<>(day5, dayPas5));
+        series.getData().add(new XYChart.Data<>(day6, dayPas6));
+        series.getData().add(new XYChart.Data<>(day7, dayPas7));
+
+
 
 
         // Adicionando a série ao LineChart
+        mylineChart1.getData().clear();
         mylineChart1.getData().add(series);
     }
 
 
     public void setRoutes() {
         unshowContent();
+        anchorPane2.setVisible(true);
         scrollPane.setVisible(true);
         linechart1.setVisible(true);
         graphBox2.setVisible(true);
         anchorPane1.setVisible(true);
+    }
 
+    public void setRouteChart(String route, Double passagers){
+        Button busContainer = new Button("Route" + route + " - " + passagers + " Passagers");
+        busContainer.setId(route);
 
-
-        String Route = "1567-10";
-
-        double passagers = Math.random();
-
-
-        Text busName = new Text("Route: " + Route);
-        Rectangle busContainer = new Rectangle(310, 5);
-
-        busName.setStyle("-fx-font: 20 arial; -fx-fill: #acacac");
-
+        busContainer.setStyle("-fx-font: 20 arial; -fx-fill: #acacac");
         busContainer.setLayoutY(50);
-        busName.setLayoutX(320);
-        busName.setLayoutY(700);
+        busContainer.setMinWidth(320);
         busContainer.setStyle("-fx-fill: #e8e8e8; ");
         busContainer.setLayoutX(50);
 
-        VboxScroll.getChildren().add(busName);
         VboxScroll.getChildren().add(busContainer);
         VboxScroll.setSpacing(10);
+        System.out.println("Button Criado");
+
+        busContainer.setOnAction(event -> {
+
+            String clickedButtonId = ((Button) event.getSource()).getId();
+
+            System.out.println("Botão " + clickedButtonId + " foi clicado!");
+
+            if (clickedButtonId.equals(route)) {
+
+                System.out.println("Ação específica para o botão " + clickedButtonId);
+                String day1 = "Segunda";
+                String day2 = "Terça";
+                String day3 = "Quarta";
+                String day4 = "Quinta";
+                String day5 = "Sexta";
+                String day6 = "Sábado";
+                String day7 = "Domingo";
+
+                Double dayPas1 = Math.random() * 100;
+                Double dayPas2 = Math.random() * 100;
+                Double dayPas3 = Math.random() * 100;
+                Double dayPas4 = Math.random() * 100;
+                Double dayPas5 = Math.random() * 100;
+                Double dayPas6 = Math.random() * 100;
+                Double dayPas7 = Math.random() * 100;
+
+                setLinechart1(day1, day2, day3, day4, day5, day6, day7, dayPas1, dayPas2, dayPas3, dayPas4, dayPas5, dayPas6, dayPas7);
+            }
+        });
+
 
     }
-
 }
