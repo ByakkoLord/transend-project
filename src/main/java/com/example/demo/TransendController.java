@@ -447,15 +447,8 @@ public class TransendController {
                 });
                 thread.start();
 
-                Double dayPas1 = Math.random() * 100;
-                Double dayPas2 = Math.random() * 100;
-                Double dayPas3 = Math.random() * 100;
-                Double dayPas4 = Math.random() * 100;
-                Double dayPas5 = Math.random() * 100;
-                Double dayPas6 = Math.random() * 100;
-                Double dayPas7 = Math.random() * 100;
 
-                setLinechart1(day1, day2, day3, day4, day5, day6, day7, dayPas1, dayPas2, dayPas3, dayPas4, dayPas5, dayPas6, dayPas7);
+                setLinechart1(day1, day2, day3, day4, day5, day6, day7, sundayP, mondayP, tuesdayP, wednesdayP, thursdayP, fridayP, saturdayP);
             }
         });
 
