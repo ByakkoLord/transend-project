@@ -388,37 +388,35 @@ public class TransendController {
                 long sumTime = firstDayOfMonth.until(currentDate, java.time.temporal.ChronoUnit.WEEKS) + 1;
                 System.out.println("Semanas: " + sumTime);
 
-                String route_get = database.getBus(route);
-
-                double sundayP = 0.0;
-                double mondayP = 0.0;
-                double tuesdayP = 0.0;
-                double wednesdayP = 0.0;
-                double thursdayP = 0.0;
-                double fridayP = 0.0;
-                double saturdayP = 0.0;
+                double sundayP = 0;
+                double mondayP = 0;
+                double tuesdayP = 0;
+                double wednesdayP = 0;
+                double thursdayP = 0;
+                double fridayP = 0;
+                double saturdayP = 0;
 
                 switch (daiOfWeek){
                     case 1:
-                        sundayP = passagers/sumTime;
+                        sundayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                     case 2:
-                        mondayP = passagers/sumTime;
+                        mondayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                     case 3:
-                        tuesdayP = passagers/sumTime;
+                        tuesdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                     case 4:
-                        wednesdayP = passagers/sumTime;
+                        wednesdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                     case 5:
-                        thursdayP = passagers/sumTime;
+                        thursdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                     case 6:
-                        fridayP = passagers/sumTime;
+                        fridayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                     case 7:
-                        saturdayP = passagers/sumTime;
+                        saturdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
                         break;
                 }
 
@@ -431,7 +429,7 @@ public class TransendController {
                 double finalSaturdayP = saturdayP;
 
                 Thread thread = new Thread(() -> {
-                    database.sendBus(1, finalSundayP, finalMondayP, finalTuesdayP, finalWednesdayP, finalThursdayP, finalFridayP, finalSaturdayP, route, true, "12:00");
+                    database.sendBus(1, finalSundayP, finalMondayP, finalTuesdayP, finalWednesdayP, finalThursdayP, finalFridayP, finalSaturdayP, route);
                 });
                 thread.start();
 
