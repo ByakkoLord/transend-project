@@ -77,9 +77,13 @@ public class TransendApplication extends Application {
                     controller.updateBusCount(busCount)
             );
 
+
             System.out.println("Contador atualizado, total onibus: " + busCount);
         }, 0, 20, TimeUnit.MINUTES);
     }
+
+
+
 
     public void inicializarMainGraphic() {
         // Carregar dados da database

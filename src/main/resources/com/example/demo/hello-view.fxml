@@ -145,7 +145,7 @@
       </font>
    </Text>
    <Circle fx:id="baricon2" fill="#25bc50" layoutX="634.0" layoutY="539.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <LineChart fx:id="linechart" layoutX="265.0" layoutY="212.0" prefHeight="310.0" prefWidth="500.0">
+   <LineChart fx:id="linechart" layoutX="265.0" layoutY="212.0" legendVisible="false" prefHeight="310.0" prefWidth="500.0">
      <xAxis>
        <CategoryAxis side="BOTTOM" />
      </xAxis>
@@ -201,9 +201,9 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="4.0" layoutX="145.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="467.0" />
       <TextField layoutX="632.0" layoutY="153.0" prefHeight="25.0" prefWidth="106.0" />
    </AnchorPane>
-   <AnchorPane fx:id="anchorPane1" layoutX="259.0" layoutY="198.0" prefHeight="376.0" prefWidth="511.0" visible="false">
+   <AnchorPane fx:id="anchorPane1" layoutX="259.0" layoutY="198.0" prefHeight="376.0" prefWidth="511.0">
       <children>
-         <LineChart fx:id="linechart1" layoutX="10.0" layoutY="14.0" prefHeight="310.0" prefWidth="492.0" visible="false" xAxis="">
+         <LineChart fx:id="linechart1" layoutX="10.0" layoutY="14.0" legendVisible="false" prefHeight="310.0" prefWidth="492.0" visible="false" xAxis="">
             <xAxis>
                <CategoryAxis side="BOTTOM" />
             </xAxis>

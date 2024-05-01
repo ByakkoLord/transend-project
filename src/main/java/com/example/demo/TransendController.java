@@ -18,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -312,9 +313,10 @@ public class TransendController {
     Dotenv dotenv = Dotenv.load();
     Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
+    List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
 
     public void initBusBot(){
-        List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
+
 
         for (BusPosicaoResult.Linha linha : buses1) {
 
@@ -328,14 +330,15 @@ public class TransendController {
             System.out.println("Rota: " + route + " Passageiros: " + passagers);
 
             Platform.runLater(() ->
-                    setRouteChart(route, passagers)
-            );
-
-            Platform.runLater(() ->
                     busBot(passagers, busPerRoute, route)
             );
 
-            database.sendBus(1, route, false, "2021-10-10 10:10:10");
+            Platform.runLater(() ->
+                    setRouteChart(route, passagers)
+            );
+
+
+
 
         }
     }
@@ -372,6 +375,65 @@ public class TransendController {
                 String day5 = "Sexta";
                 String day6 = "Sábado";
                 String day7 = "Domingo";
+
+                LocalDate today = LocalDate.now();
+
+                int dayOfMonth = today.getDayOfMonth();
+                int daiOfWeek = today.getDayOfWeek().getValue();
+                System.out.println("Dia do mês: " + dayOfMonth);
+                System.out.println("Dia da semana: " + daiOfWeek);
+                LocalDate currentDate = LocalDate.now();
+                LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
+
+                long sumTime = firstDayOfMonth.until(currentDate, java.time.temporal.ChronoUnit.WEEKS) + 1;
+                System.out.println("Semanas: " + sumTime);
+
+                String route_get = database.getBus(route);
+
+                double sundayP = 0.0;
+                double mondayP = 0.0;
+                double tuesdayP = 0.0;
+                double wednesdayP = 0.0;
+                double thursdayP = 0.0;
+                double fridayP = 0.0;
+                double saturdayP = 0.0;
+
+                switch (daiOfWeek){
+                    case 1:
+                        sundayP = passagers/sumTime;
+                        break;
+                    case 2:
+                        mondayP = passagers/sumTime;
+                        break;
+                    case 3:
+                        tuesdayP = passagers/sumTime;
+                        break;
+                    case 4:
+                        wednesdayP = passagers/sumTime;
+                        break;
+                    case 5:
+                        thursdayP = passagers/sumTime;
+                        break;
+                    case 6:
+                        fridayP = passagers/sumTime;
+                        break;
+                    case 7:
+                        saturdayP = passagers/sumTime;
+                        break;
+                }
+
+                double finalSundayP = sundayP;
+                double finalMondayP = mondayP;
+                double finalTuesdayP = tuesdayP;
+                double finalWednesdayP = wednesdayP;
+                double finalThursdayP = thursdayP;
+                double finalFridayP = fridayP;
+                double finalSaturdayP = saturdayP;
+
+                Thread thread = new Thread(() -> {
+                    database.sendBus(1, finalSundayP, finalMondayP, finalTuesdayP, finalWednesdayP, finalThursdayP, finalFridayP, finalSaturdayP, route, true, "12:00");
+                });
+                thread.start();
 
                 Double dayPas1 = Math.random() * 100;
                 Double dayPas2 = Math.random() * 100;
