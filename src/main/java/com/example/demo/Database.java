@@ -38,9 +38,8 @@ public class Database {
     }
 
 
-    public void sendBus(int id_bus,Double Sunday, Double Monday, Double Tuesday, Double Wednesday, Double Thursday, Double Friday, Double Saturday, String route_cod, boolean pcd_v, String reordered_time) {
-
-        String query = "insert into bus_info (id_bus, route_cod, pcd_v, reordered_time) values(2, 1231, true, 123)";
+    public void sendBus(int id_bus, Double Sunday, Double Monday, Double Tuesday, Double Wednesday, Double Thursday, Double Friday, Double Saturday, String route_cod) {
+        String query = "INSERT INTO bus_info (id_bus, sunday, monday, tuesday, wednesday, thursday, friday, saturday, route_cod) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if (this.connection == null) {
             System.out.println("Connection object is null");
@@ -48,32 +47,81 @@ public class Database {
         }
 
         try {
-            Statement statement = this.connection.createStatement();
-            int rowsAffected = statement.executeUpdate(query);
+            PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+            preparedStatement.setInt(1, id_bus);
+            preparedStatement.setDouble(2, Sunday);
+            preparedStatement.setDouble(3, Monday);
+            preparedStatement.setDouble(4, Tuesday);
+            preparedStatement.setDouble(5, Wednesday);
+            preparedStatement.setDouble(6, Thursday);
+            preparedStatement.setDouble(7, Friday);
+            preparedStatement.setDouble(8, Saturday);
+            preparedStatement.setString(9, route_cod);
+
+            int rowsAffected = preparedStatement.executeUpdate();
             System.out.println(rowsAffected + " linha(s) inserida(s)");
         } catch (SQLException e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
         }
     }
 
-    public String getBus(String route_cod){
 
-        String query = "select * from bus_info where route_cod = " + route_cod;
+    public Double getBus(String route_cod, int dayofWeek) {
+        int idResult = 0;
+        double sundayResult = 0;
+        double mondayResult = 0;
+        double tuesdayResult = 0;
+        double wednesdayResult = 0;
+        double thursdayResult = 0;
+        double fridayResult = 0;
+        double saturdayResult = 0;
+
+        String query = "SELECT * FROM bus_info WHERE route_cod = ?";
+        StringBuilder result = new StringBuilder();
 
         if (this.connection == null) {
             System.out.println("Connection object is null");
-            return query;
+            return null;
         }
 
         try {
-            Statement statement = this.connection.createStatement();
-            ResultSet rowsAffected = statement.executeQuery(query);
-            System.out.println(rowsAffected + " linha(s) inserida(s)");
+            PreparedStatement pstmt = this.connection.prepareStatement(query);
+            pstmt.setString(1, route_cod);
+            ResultSet rs = pstmt.executeQuery();
+
+            int[] result1 = {};
+            while (rs.next()) {
+                result.append("id_bus: ").append(rs.getInt("id_bus")).append(", ");
+                result.append("route_cod: ").append(rs.getString("route_cod")).append(", ");
+
+                idResult = rs.getInt("id_bus");
+                sundayResult = rs.getDouble("sunday");
+                mondayResult = rs.getDouble("monday");
+                tuesdayResult = rs.getDouble("tuesday");
+                wednesdayResult = rs.getDouble("wednesday");
+                thursdayResult = rs.getDouble("thursday");
+                fridayResult = rs.getDouble("friday");
+                saturdayResult = rs.getDouble("saturday");
+
+            }
+            rs.close();
+            pstmt.close();
         } catch (SQLException e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
+            System.out.println("Failed to execute query: " + e);
         }
-        return query;
+
+        return switch (dayofWeek) {
+            case 1 -> sundayResult;
+            case 2 -> mondayResult;
+            case 3 -> tuesdayResult;
+            case 4 -> wednesdayResult;
+            case 5 -> thursdayResult;
+            case 6 -> fridayResult;
+            case 7 -> saturdayResult;
+            default -> null;
+        };
     }
+
 
     public void closeConnection() {
         try {
