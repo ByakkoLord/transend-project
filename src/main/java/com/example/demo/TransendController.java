@@ -323,6 +323,7 @@ public class TransendController {
 
             String route = linha.c;
             int busPerRoute = linha.qv;
+            int direction = linha.sl;
             double min = 10;
             double max = 1000;
             double passagers = Math.round(Math.random() * (max - min)) + min;
@@ -334,7 +335,7 @@ public class TransendController {
             );
 
             Platform.runLater(() ->
-                    setRouteChart(route, passagers)
+                    setRouteChart(route, passagers, direction)
             );
 
 
@@ -345,7 +346,20 @@ public class TransendController {
 
 
 
-    public void setRouteChart(String route, Double passagers){
+    public void setRouteChart(String route, Double passagers, int direction){
+
+        String routeNumbers = route.replaceAll("[^0-9]", "");
+        int routeLenght = routeNumbers.length();
+        String routeId = "";
+        if (routeLenght > 4){
+            routeId = routeNumbers.substring(0, 4);
+        }
+        int idCreator = Integer.parseInt(routeId);
+
+        double idDouble = Math.pow(idCreator, direction);
+        int id = (int) idDouble;
+
+
         Button busContainer = new Button("Route" + route + " - " + passagers + " Passagers");
         busContainer.setId(route);
 
@@ -429,7 +443,7 @@ public class TransendController {
                 double finalSaturdayP = saturdayP;
 
                 Thread thread = new Thread(() -> {
-                    database.sendBus(1, finalSundayP, finalMondayP, finalTuesdayP, finalWednesdayP, finalThursdayP, finalFridayP, finalSaturdayP, route);
+                    database.sendBus(id, finalSundayP, finalMondayP, finalTuesdayP, finalWednesdayP, finalThursdayP, finalFridayP, finalSaturdayP, route);
                 });
                 thread.start();
 
