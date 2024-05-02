@@ -317,12 +317,12 @@ public class TransendController {
     List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
 
     public void redist(){
-        int pressedBtn = 0;
+        int pressedBtn = 1;
         initBusBot(pressedBtn);
     }
 
     public void sendDataButton(){
-        int pressedBtn = 1;
+        int pressedBtn = 0;
         initBusBot(pressedBtn);
     }
 
@@ -362,7 +362,7 @@ public class TransendController {
                 );
             }else if(pressedBtn == 2){
                 Platform.runLater(() ->
-                        setRouteChart(route, passagers, direction)
+                        setRouteChart(route, passagers)
                 );
             }
 
@@ -466,16 +466,16 @@ public class TransendController {
 
 
 
-    public void setRouteChart(String route, Double passagers, int direction){
+    public void setRouteChart(String route, Double passagers){
 
 
 
-        Button busContainer = new Button("Route" + route + " - " + passagers + " Passagers");
+        Button busContainer = new Button("Linha - " + route);
         busContainer.setId(route);
 
         busContainer.setStyle("-fx-font: 20 arial; -fx-fill: #acacac");
         busContainer.setLayoutY(50);
-        busContainer.setMinWidth(320);
+        busContainer.setMinWidth(350);
         busContainer.setStyle("-fx-fill: #e8e8e8; ");
         busContainer.setLayoutX(50);
 

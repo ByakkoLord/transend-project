@@ -262,8 +262,8 @@
          </Text>
       </children>
    </AnchorPane>
-   <Button fx:id="sendDataButton" layoutX="923.0" layoutY="601.0" mnemonicParsing="false" onAction="#sendDataButton" prefHeight="40.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
-   <Text disable="true" fill="#5582a8" layoutX="947.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviar Dados" wrappingWidth="126.0">
+   <Button fx:id="sendDataButton" layoutX="1040.0" layoutY="86.0" mnemonicParsing="false" onAction="#sendDataButton" prefHeight="40.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
+   <Text disable="true" fill="#5582a8" layoutX="1064.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviar Dados" wrappingWidth="126.0">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
       </font>
