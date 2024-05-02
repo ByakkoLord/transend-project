@@ -454,7 +454,7 @@ public class TransendController {
         }
 
         if (routeId.isEmpty()) {
-            return -1;
+            return (int) (Math.random() * 1000);
         }
 
         int idCreator = Integer.parseInt(routeId);
@@ -465,11 +465,12 @@ public class TransendController {
     }
 
 
-
+    int count = 0;
     public void setRouteChart(String route, Double passagers){
 
 
-
+        count++;
+        System.out.println(count);
         Button busContainer = new Button("Linha - " + route);
         busContainer.setId(route);
 
