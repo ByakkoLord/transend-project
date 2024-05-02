@@ -35,6 +35,8 @@ public class TransendApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1259, 650);
 
         controller = fxmlLoader.getController();
+        int pressedBtn = 2;
+        controller.initBusBot(pressedBtn);
 
         scene.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
