@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class TransendController {
@@ -327,10 +328,19 @@ public class TransendController {
     }
 
     public void initBusBot(int pressedBtn){
+        LocalDate today = LocalDate.now();
 
+        int dayOfMonth = today.getDayOfMonth();
+        int daiOfWeek = today.getDayOfWeek().getValue();
+        System.out.println("-!-Dia do mês: " + dayOfMonth);
+        System.out.println("-!-Dia da semana: " + daiOfWeek);
+        LocalDate currentDate = LocalDate.now();
+        LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
+
+        long sumTime = firstDayOfMonth.until(currentDate, java.time.temporal.ChronoUnit.WEEKS) + 1;
+        System.out.println("-!-Semanas: " + sumTime);
 
         for (BusPosicaoResult.Linha linha : buses1) {
-
 
             String route = linha.c;
             int busPerRoute = linha.qv;
@@ -352,8 +362,68 @@ public class TransendController {
                 double fridayPassengers = getInfo(route, passagers).get(5);
                 double saturdayPassengers = getInfo(route, passagers).get(6);
 
+                AtomicReference<Double> newSundayPassengers = new AtomicReference<>((double) 0);
+                AtomicReference<Double> newMondayPassengers = new AtomicReference<>((double) 0);
+                AtomicReference<Double> newTuesdayPassengers = new AtomicReference<>((double) 0);
+                AtomicReference<Double> newWednesdayPassengers = new AtomicReference<>((double) 0);
+                AtomicReference<Double> newThursdayPassengers = new AtomicReference<>((double) 0);
+                AtomicReference<Double> newFridayPassengers = new AtomicReference<>((double) 0);
+                AtomicReference<Double> newSaturdayPassengers = new AtomicReference<>((double) 0);
+
                 Thread thread = new Thread(() -> {
-                    database.sendBus(id, sundayPassengers, mondayPassengers, tuesdayPassengers, wednesdayPassengers, thursdayPassengers, fridayPassengers, saturdayPassengers, route);
+                    if (sundayPassengers < 0 || mondayPassengers < 0 || tuesdayPassengers < 0 || wednesdayPassengers < 0 || thursdayPassengers < 0 || fridayPassengers < 0 || saturdayPassengers < 0){
+
+                        if (daiOfWeek == 7){
+                            newSundayPassengers.set(passagers);
+                        }else{
+                            newSundayPassengers.set(0.0);
+                        }
+                        if (daiOfWeek == 1){
+                            newMondayPassengers.set(passagers);
+                        }else{
+                            newMondayPassengers.set(0.0);
+                        }
+                        if (daiOfWeek == 2){
+                            newTuesdayPassengers.set(passagers);
+                        }else{
+                            newTuesdayPassengers.set(0.0);
+                        }
+                        if (daiOfWeek == 3){
+                            newWednesdayPassengers.set(passagers);
+                        }else{
+                            newWednesdayPassengers.set(0.0);
+                        }
+                        if (daiOfWeek == 4){
+                            newThursdayPassengers.set(passagers);
+                        }else{
+                            newThursdayPassengers.set(0.0);
+                        }
+                        if (daiOfWeek == 5){
+                            newFridayPassengers.set(passagers);
+                        }else{
+                            newFridayPassengers.set(0.0);
+                        }
+                        if (daiOfWeek == 6){
+                            newSaturdayPassengers.set(passagers);
+                        }else{
+                            newSaturdayPassengers.set(0.0);
+                        }
+
+                        database.sendBus(id,newSundayPassengers.get(), newMondayPassengers.get(), newTuesdayPassengers.get(), newWednesdayPassengers.get(), newThursdayPassengers.get(), newFridayPassengers.get(), newSaturdayPassengers.get(), route);
+                    }else{
+                        System.out.println("teste:" + fridayPassengers);
+                        newSundayPassengers.set(sundayPassengers + passagers);
+                        newMondayPassengers.set(mondayPassengers + passagers);
+                        newTuesdayPassengers.set(tuesdayPassengers + passagers);
+                        newWednesdayPassengers.set(wednesdayPassengers + passagers);
+                        newThursdayPassengers.set(thursdayPassengers + passagers);
+                        newFridayPassengers.set(fridayPassengers + passagers);
+                        newSaturdayPassengers.set(saturdayPassengers + passagers);
+
+                        database.updateBus(newSundayPassengers.get(), newMondayPassengers.get(), newTuesdayPassengers.get(), newWednesdayPassengers.get(), newThursdayPassengers.get(), newFridayPassengers.get(), newSaturdayPassengers.get(), route);
+                    }
+
+
                 });
                 thread.start();
             }else if(pressedBtn == 1){
@@ -384,51 +454,51 @@ public class TransendController {
         long sumTime = firstDayOfMonth.until(currentDate, java.time.temporal.ChronoUnit.WEEKS) + 1;
         System.out.println("Semanas: " + sumTime);
 
-        double sundayP = 0;
-        double mondayP = 0;
-        double tuesdayP = 0;
-        double wednesdayP = 0;
-        double thursdayP = 0;
-        double fridayP = 0;
-        double saturdayP = 0;
+        double sundayP = 0.0;
+        double mondayP = 0.0;
+        double tuesdayP = 0.0;
+        double wednesdayP = 0.0;
+        double thursdayP = 0.0;
+        double fridayP = 0.0;
+        double saturdayP = 0.0;
+
+        double newPassengers;
 
         switch (daiOfWeek){
+
             case 1:
-                sundayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                mondayP = newPassengers/sumTime;
                 break;
             case 2:
-                mondayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                tuesdayP = newPassengers/sumTime;
                 break;
             case 3:
-                tuesdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                wednesdayP = newPassengers/sumTime;
                 break;
             case 4:
-                wednesdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                thursdayP = newPassengers/sumTime;
                 break;
             case 5:
-                thursdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                fridayP = newPassengers/sumTime;
                 break;
             case 6:
-                fridayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                saturdayP = newPassengers/sumTime;
                 break;
             case 7:
-                saturdayP = (database.getBus(route, daiOfWeek) + passagers)/sumTime;
+                newPassengers = (database.getBus(route, daiOfWeek) == -1) ? -1 : database.getBus(route, daiOfWeek) + passagers;
+                sundayP = newPassengers/sumTime;
                 break;
         }
 
-
+        System.out.println(calculatePassengerValues(sundayP, mondayP, tuesdayP, wednesdayP, thursdayP, fridayP, saturdayP));
         return calculatePassengerValues(sundayP, mondayP, tuesdayP, wednesdayP, thursdayP, fridayP, saturdayP);
     }
-
-    //Criar Button para setRouteChart
-
-    /*
-    Platform.runLater(() ->
-                    setRouteChart(route, passagers, direction)
-            );
-    */
-
-
 
     private List<Double> calculatePassengerValues(double sundayP, double mondayP, double tuesdayP,
                                                   double wednesdayP, double thursdayP, double fridayP,
@@ -466,7 +536,7 @@ public class TransendController {
 
 
     int count = 0;
-    public void setRouteChart(String route, Double passagers){
+    public void setRouteChart(String route, double passagers){
 
 
         count++;
@@ -493,21 +563,21 @@ public class TransendController {
             if (clickedButtonId.equals(route)) {
 
                 System.out.println("Ação específica para o botão " + clickedButtonId);
-                String day1 = "Segunda";
-                String day2 = "Terça";
-                String day3 = "Quarta";
-                String day4 = "Quinta";
-                String day5 = "Sexta";
-                String day6 = "Sábado";
-                String day7 = "Domingo";
+                String day1 = "Domingo";
+                String day2 = "Segunda";
+                String day3 = "Terça";
+                String day4 = "Quarta";
+                String day5 = "Quinta";
+                String day6 = "Sexta";
+                String day7 = "Sábado";
 
-                double sundayPassengers = getInfo(route, passagers).get(0);
-                double mondayPassengers = getInfo(route, passagers).get(1);
-                double tuesdayPassengers = getInfo(route, passagers).get(2);
-                double wednesdayPassengers = getInfo(route, passagers).get(3);
-                double thursdayPassengers = getInfo(route, passagers).get(4);
-                double fridayPassengers = getInfo(route, passagers).get(5);
-                double saturdayPassengers = getInfo(route, passagers).get(6);
+                double sundayPassengers = getInfo(route, 0).get(0);
+                double mondayPassengers = getInfo(route, 0).get(1);
+                double tuesdayPassengers = getInfo(route, 0).get(2);
+                double wednesdayPassengers = getInfo(route, 0).get(3);
+                double thursdayPassengers = getInfo(route, 0).get(4);
+                double fridayPassengers = getInfo(route, 0).get(5);
+                double saturdayPassengers = getInfo(route, 0).get(6);
 
 
                 setLinechart1(day1, day2, day3, day4, day5, day6, day7, sundayPassengers, mondayPassengers, tuesdayPassengers, wednesdayPassengers, thursdayPassengers, fridayPassengers, saturdayPassengers);
