@@ -65,7 +65,6 @@ public class TransendApplication extends Application {
         stage.show();
 
         inicializarBusCount();
-        inicializarMainGraphic();
         inicializarPizzaGraphic();
     }
 
@@ -84,26 +83,6 @@ public class TransendApplication extends Application {
         }, 0, 20, TimeUnit.MINUTES);
     }
 
-
-
-
-    public void inicializarMainGraphic() {
-        // Carregar dados da database
-
-
-        // Atualizar dados usando api
-        executorService.scheduleWithFixedDelay(() -> {
-            List<BusPosicaoResult.Linha> buses = api.getAllBuses().l;
-            int busCount = buses.stream().mapToInt(linha -> linha.vs.toArray().length).sum();
-            long now = Instant.now().getEpochSecond();
-
-            Platform.runLater(() ->
-                    controller.addToLinechart(new XYChart.Data<>(new SimpleDateFormat("HH.mm").format(now), busCount))
-            );
-
-            System.out.println("Grafico atualizado: " + now);
-        }, 0, 10, TimeUnit.MINUTES);
-    }
 
     public void inicializarPizzaGraphic() {
         controller.atualizarGrafico(0, 0, 0);

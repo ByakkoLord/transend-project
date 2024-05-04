@@ -33,7 +33,6 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Button fx:id="historyButton" layoutX="25.0" layoutY="168.0" mnemonicParsing="false" onAction="#setHistory" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
    <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="144.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@assets/bus icon.png" />
    </ImageView>
@@ -50,20 +49,12 @@
          <Font name="Nirmala UI Bold" size="18.0" />
       </font>
    </Text>
-   <ImageView disable="true" fitHeight="40.0" fitWidth="66.0" layoutX="24.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@assets/settings%20icon%20unselected.png" />
-   </ImageView>
-   <Text disable="true" fill="#084a83" layoutX="92.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico" wrappingWidth="88.00000000000006">
-      <font>
-         <Font name="Nirmala UI Bold" size="20.0" />
-      </font>
-   </Text>
    <Label fx:id="bus_state_one" layoutX="48.0" layoutY="428.0" prefHeight="47.0" prefWidth="113.0" text="4586">
       <font>
          <Font name="Nirmala UI Bold" size="30.0" />
       </font>
    </Label>
-   <Rectangle fx:id="graphBox1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="376.0" layoutX="806.0" layoutY="198.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="407.0">
+   <Rectangle fx:id="graphBox1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="376.0" layoutX="770.0" layoutY="197.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="407.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -72,39 +63,34 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <PieChart id="pieChart" fx:id="graf" labelsVisible="false" layoutX="806.0" layoutY="199.0" legendVisible="false" prefHeight="310.0" prefWidth="407.0" />
+   <PieChart id="pieChart" fx:id="graf" labelsVisible="false" layoutX="770.0" layoutY="198.0" legendVisible="false" prefHeight="310.0" prefWidth="407.0" />
    <Button layoutX="25.0" layoutY="323.0" mnemonicParsing="false" onAction="#setRoutes" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
-   <Text disable="true" fill="#5582a8" layoutX="92.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotas" wrappingWidth="66.0">
-      <font>
-         <Font name="Nirmala UI Bold" size="20.0" />
-      </font>
-   </Text>
    <ImageView disable="true" fitHeight="58.0" fitWidth="40.0" layoutX="37.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@assets/lines icon unselected.png" />
+      <Image url="@assets/chart%20icon%20unselected.png" />
    </ImageView>
-   <Button layoutX="25.0" layoutY="243.0" mnemonicParsing="false" onAction="#setGraphs" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
-   <Text disable="true" fill="#5582a8" layoutX="92.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gráficos" wrappingWidth="80.0">
+   <Button layoutX="25.0" layoutY="166.0" mnemonicParsing="false" onAction="#setGraphs" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
+   <Text disable="true" fill="#5582a8" layoutX="92.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Início" wrappingWidth="80.0">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
       </font>
    </Text>
-   <ImageView disable="true" fitHeight="58.0" fitWidth="40.0" layoutX="37.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
-      <Image url="@assets/chart icon unselected.png" />
+   <ImageView disable="true" fitHeight="58.0" fitWidth="40.0" layoutX="37.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@assets/home%20selected.png" />
    </ImageView>
-   <Circle fx:id="pieicon" fill="#084a83" layoutX="841.0" layoutY="550.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text fx:id="pieText" layoutX="855.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Em Operação" wrappingWidth="95.0">
+   <Circle fx:id="pieicon" fill="#084a83" layoutX="805.0" layoutY="549.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Text fx:id="pieText" layoutX="819.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Em Operação" wrappingWidth="95.0">
       <font>
          <Font name="Nirmala UI Bold" size="14.0" />
       </font>
    </Text>
-   <Circle fx:id="pieicon1" fill="#ff9b1f" layoutX="973.0" layoutY="550.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text fx:id="pieText1" layoutX="987.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Na Garagem" wrappingWidth="95.0">
+   <Circle fx:id="pieicon1" fill="#ff9b1f" layoutX="937.0" layoutY="549.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Text fx:id="pieText1" layoutX="951.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Na Garagem" wrappingWidth="95.0">
       <font>
          <Font name="Nirmala UI Bold" size="14.0" />
       </font>
    </Text>
-   <Circle fx:id="pieicon2" fill="#25bc50" layoutX="1092.0" layoutY="550.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text fx:id="pieText2" layoutX="1106.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manutenção" wrappingWidth="95.0">
+   <Circle fx:id="pieicon2" fill="#25bc50" layoutX="1056.0" layoutY="549.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Text fx:id="pieText2" layoutX="1070.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manutenção" wrappingWidth="95.0">
       <font>
          <Font name="Nirmala UI Bold" size="14.0" />
       </font>
@@ -123,7 +109,7 @@
          </ImageView>
       </graphic>
    </Button>
-   <Rectangle fx:id="graphBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="376.0" layoutX="258.0" layoutY="198.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="511.0">
+   <Rectangle fx:id="graphBox" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="376.0" layoutX="258.0" layoutY="198.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" visible="false" width="511.0">
       <effect>
          <DropShadow height="47.38" offsetY="10.0" radius="21.725" width="41.52">
             <color>
@@ -132,20 +118,20 @@
          </DropShadow>
       </effect>
    </Rectangle>
-   <Circle fx:id="baricon" fill="#084a83" layoutX="289.0" layoutY="538.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text fx:id="barText" layoutX="308.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PCD Adaptated" wrappingWidth="106.34765625">
+   <Circle fx:id="baricon" fill="#084a83" layoutX="289.0" layoutY="538.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
+   <Text fx:id="barText" layoutX="308.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PCD Adaptated" visible="false" wrappingWidth="106.34765625">
       <font>
          <Font name="Nirmala UI Bold" size="14.0" />
       </font>
    </Text>
-   <Circle fx:id="baricon1" fill="#ff9b1f" layoutX="457.0" layoutY="539.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Text fx:id="barText1" layoutX="479.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PCD not Adaptated" wrappingWidth="137.0">
+   <Circle fx:id="baricon1" fill="#ff9b1f" layoutX="457.0" layoutY="539.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
+   <Text fx:id="barText1" layoutX="479.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PCD not Adaptated" visible="false" wrappingWidth="137.0">
       <font>
          <Font name="Nirmala UI Bold" size="14.0" />
       </font>
    </Text>
-   <Circle fx:id="baricon2" fill="#25bc50" layoutX="634.0" layoutY="539.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <LineChart fx:id="linechart" layoutX="265.0" layoutY="212.0" legendVisible="false" prefHeight="310.0" prefWidth="500.0">
+   <Circle fx:id="baricon2" fill="#25bc50" layoutX="634.0" layoutY="539.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" />
+   <LineChart fx:id="linechart" disable="true" layoutX="265.0" layoutY="212.0" legendVisible="false" prefHeight="310.0" prefWidth="500.0" visible="false">
      <xAxis>
        <CategoryAxis side="BOTTOM" />
      </xAxis>
@@ -153,7 +139,7 @@
        <NumberAxis side="LEFT" />
      </yAxis>
    </LineChart>
-   <Text fx:id="barText2" layoutX="654.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Maintence" wrappingWidth="95.0">
+   <Text fx:id="barText2" disable="true" layoutX="654.0" layoutY="544.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Maintence" visible="false" wrappingWidth="95.0">
       <font>
          <Font name="Nirmala UI Bold" size="14.0" />
       </font>
@@ -201,7 +187,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#084a83" height="4.0" layoutX="145.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="467.0" />
       <TextField layoutX="632.0" layoutY="153.0" prefHeight="25.0" prefWidth="106.0" />
    </AnchorPane>
-   <AnchorPane fx:id="anchorPane1" layoutX="259.0" layoutY="198.0" prefHeight="376.0" prefWidth="511.0">
+   <AnchorPane fx:id="anchorPane1" layoutX="259.0" layoutY="198.0" prefHeight="376.0" prefWidth="511.0" visible="false">
       <children>
          <LineChart fx:id="linechart1" layoutX="10.0" layoutY="14.0" legendVisible="false" prefHeight="310.0" prefWidth="492.0" visible="false" xAxis="">
             <xAxis>
@@ -248,7 +234,7 @@
                </DropShadow>
             </effect>
          </Rectangle>
-         <Text fill="#084a83" layoutX="329.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico" wrappingWidth="106.34765624999989">
+         <Text fill="#084a83" layoutX="313.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distribuidor" wrappingWidth="137.0">
             <font>
                <Font name="Nirmala UI Bold" size="24.0" />
             </font>
@@ -266,6 +252,25 @@
    <Text disable="true" fill="#5582a8" layoutX="1064.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviar Dados" wrappingWidth="126.0">
       <font>
          <Font name="Nirmala UI Bold" size="20.0" />
+      </font>
+   </Text>
+   <Text disable="true" fill="#5582a8" layoutX="92.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gráficos" wrappingWidth="80.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="20.0" />
+      </font>
+   </Text>
+   <Button fx:id="historyButton" layoutX="25.0" layoutY="244.0" mnemonicParsing="false" onAction="#setHistory" prefHeight="62.0" prefWidth="173.0" styleClass="buttons" stylesheets="@fxmlStyle.css" />
+   <ImageView disable="true" fitHeight="40.0" fitWidth="66.0" layoutX="24.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@assets/settings%20icon%20unselected.png" />
+   </ImageView>
+   <Text disable="true" fill="#5582a8" layoutX="85.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distribuir" wrappingWidth="95.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="20.0" />
+      </font>
+   </Text>
+   <Text fx:id="auxiliator" disable="true" fill="#5582a8" layoutX="269.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo ao Auxiliador de Gestão de Sistemas de Transporte" wrappingWidth="467.0">
+      <font>
+         <Font name="Nirmala UI Bold" size="48.0" />
       </font>
    </Text>
 </AnchorPane>

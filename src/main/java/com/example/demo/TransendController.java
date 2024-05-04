@@ -59,6 +59,9 @@ public class TransendController {
     public TextArea textArea;
 
     @FXML
+    public Text auxiliator;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML
@@ -161,16 +164,9 @@ public class TransendController {
 
     public void setGraphs() {
         unshowContent();
+        auxiliator.setVisible(true);
         graphBox1.setVisible(true);
-        graphBox.setVisible(true);
         graf.setVisible(true);
-        linechart.setVisible(true);
-        baricon.setVisible(true);
-        baricon1.setVisible(true);
-        baricon2.setVisible(true);
-        barText.setVisible(true);
-        barText1.setVisible(true);
-        barText2.setVisible(true);
         pieicon.setVisible(true);
         pieicon1.setVisible(true);
         pieicon2.setVisible(true);
@@ -180,6 +176,7 @@ public class TransendController {
     }
 
     public void unshowContent() {
+        auxiliator.setVisible(false);
         graphBox1.setVisible(false);
         settingsPane.setVisible(false);
         scrollPane.setVisible(false);
