@@ -305,7 +305,9 @@ public class TransendController {
         }
 
         StringBuilder sb = new StringBuilder(textArea.getText());
-        sb.append("Retirar " + busOut + " ônibus --- " + "Adicionar " + busIn + " ônibus" + " LINHA (" + route + ")").append("\n");
+        if (busOut > 0 && busIn > 0) {
+            sb.append("Retirar " + busOut + " ônibus --- " + "Adicionar " + busIn + " ônibus" + " LINHA (" + route + ")").append("\n");
+        }
         textArea.setText(sb.toString());
 
     }
