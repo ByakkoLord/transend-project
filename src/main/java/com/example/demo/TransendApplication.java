@@ -5,13 +5,10 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 public class TransendApplication extends Application {
 
-    Dotenv dotenv = Dotenv.load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
+    Dotenv dotenv = new Env().load();
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
     FXMLLoader fxmlLoader = new FXMLLoader(TransendApplication.class.getResource("hello-view.fxml"));
     ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();

@@ -309,8 +309,8 @@ public class TransendController {
         textArea.setText(sb.toString());
 
     }
-    Dotenv dotenv = Dotenv.load();
-    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASSWORD"));
+    Dotenv dotenv = new Env().load();
+    Database database = new Database(dotenv.get("DB_URL"), dotenv.get("DB_USER"), dotenv.get("DB_PASS"));
     SPTransAPI api = new SPTransAPI(dotenv.get("SPTRANS_KEY"));
     List<BusPosicaoResult.Linha> buses1 = api.getAllBuses().l;
 
@@ -337,104 +337,106 @@ public class TransendController {
         long sumTime = firstDayOfMonth.until(currentDate, java.time.temporal.ChronoUnit.WEEKS) + 1;
         System.out.println("-!-Semanas: " + sumTime);
 
-        for (BusPosicaoResult.Linha linha : buses1) {
+        new Thread(() -> {
+            for (BusPosicaoResult.Linha linha : buses1) {
 
-            String route = linha.c;
-            int busPerRoute = linha.qv;
-            int direction = linha.sl;
-            double min = 10;
-            double max = 1000;
-            double passagers = Math.round(Math.random() * (max - min)) + min;
+                String route = linha.c;
+                int busPerRoute = linha.qv;
+                int direction = linha.sl;
+                double min = 10;
+                double max = 1000;
+                double passagers = Math.round(Math.random() * (max - min)) + min;
 
-            System.out.println("Rota: " + route + " Passageiros: " + passagers);
+                System.out.println("Rota: " + route + " Passageiros: " + passagers);
 
-            int id = createID(route, direction);
+                int id = createID(route, direction);
 
-            if(pressedBtn == 0){
-                double sundayPassengers = getInfo(route, passagers).get(0);
-                double mondayPassengers = getInfo(route, passagers).get(1);
-                double tuesdayPassengers = getInfo(route, passagers).get(2);
-                double wednesdayPassengers = getInfo(route, passagers).get(3);
-                double thursdayPassengers = getInfo(route, passagers).get(4);
-                double fridayPassengers = getInfo(route, passagers).get(5);
-                double saturdayPassengers = getInfo(route, passagers).get(6);
+                if(pressedBtn == 0){
+                    double sundayPassengers = getInfo(route, passagers).get(0);
+                    double mondayPassengers = getInfo(route, passagers).get(1);
+                    double tuesdayPassengers = getInfo(route, passagers).get(2);
+                    double wednesdayPassengers = getInfo(route, passagers).get(3);
+                    double thursdayPassengers = getInfo(route, passagers).get(4);
+                    double fridayPassengers = getInfo(route, passagers).get(5);
+                    double saturdayPassengers = getInfo(route, passagers).get(6);
 
-                AtomicReference<Double> newSundayPassengers = new AtomicReference<>((double) 0);
-                AtomicReference<Double> newMondayPassengers = new AtomicReference<>((double) 0);
-                AtomicReference<Double> newTuesdayPassengers = new AtomicReference<>((double) 0);
-                AtomicReference<Double> newWednesdayPassengers = new AtomicReference<>((double) 0);
-                AtomicReference<Double> newThursdayPassengers = new AtomicReference<>((double) 0);
-                AtomicReference<Double> newFridayPassengers = new AtomicReference<>((double) 0);
-                AtomicReference<Double> newSaturdayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newSundayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newMondayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newTuesdayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newWednesdayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newThursdayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newFridayPassengers = new AtomicReference<>((double) 0);
+                    AtomicReference<Double> newSaturdayPassengers = new AtomicReference<>((double) 0);
 
-                Thread thread = new Thread(() -> {
-                    if (sundayPassengers < 0 || mondayPassengers < 0 || tuesdayPassengers < 0 || wednesdayPassengers < 0 || thursdayPassengers < 0 || fridayPassengers < 0 || saturdayPassengers < 0){
+                    Thread thread = new Thread(() -> {
+                        if (sundayPassengers < 0 || mondayPassengers < 0 || tuesdayPassengers < 0 || wednesdayPassengers < 0 || thursdayPassengers < 0 || fridayPassengers < 0 || saturdayPassengers < 0){
 
-                        if (daiOfWeek == 7){
-                            newSundayPassengers.set(passagers);
+                            if (daiOfWeek == 7){
+                                newSundayPassengers.set(passagers);
+                            }else{
+                                newSundayPassengers.set(0.0);
+                            }
+                            if (daiOfWeek == 1){
+                                newMondayPassengers.set(passagers);
+                            }else{
+                                newMondayPassengers.set(0.0);
+                            }
+                            if (daiOfWeek == 2){
+                                newTuesdayPassengers.set(passagers);
+                            }else{
+                                newTuesdayPassengers.set(0.0);
+                            }
+                            if (daiOfWeek == 3){
+                                newWednesdayPassengers.set(passagers);
+                            }else{
+                                newWednesdayPassengers.set(0.0);
+                            }
+                            if (daiOfWeek == 4){
+                                newThursdayPassengers.set(passagers);
+                            }else{
+                                newThursdayPassengers.set(0.0);
+                            }
+                            if (daiOfWeek == 5){
+                                newFridayPassengers.set(passagers);
+                            }else{
+                                newFridayPassengers.set(0.0);
+                            }
+                            if (daiOfWeek == 6){
+                                newSaturdayPassengers.set(passagers);
+                            }else{
+                                newSaturdayPassengers.set(0.0);
+                            }
+
+                            database.sendBus(id,newSundayPassengers.get(), newMondayPassengers.get(), newTuesdayPassengers.get(), newWednesdayPassengers.get(), newThursdayPassengers.get(), newFridayPassengers.get(), newSaturdayPassengers.get(), route);
                         }else{
-                            newSundayPassengers.set(0.0);
-                        }
-                        if (daiOfWeek == 1){
-                            newMondayPassengers.set(passagers);
-                        }else{
-                            newMondayPassengers.set(0.0);
-                        }
-                        if (daiOfWeek == 2){
-                            newTuesdayPassengers.set(passagers);
-                        }else{
-                            newTuesdayPassengers.set(0.0);
-                        }
-                        if (daiOfWeek == 3){
-                            newWednesdayPassengers.set(passagers);
-                        }else{
-                            newWednesdayPassengers.set(0.0);
-                        }
-                        if (daiOfWeek == 4){
-                            newThursdayPassengers.set(passagers);
-                        }else{
-                            newThursdayPassengers.set(0.0);
-                        }
-                        if (daiOfWeek == 5){
-                            newFridayPassengers.set(passagers);
-                        }else{
-                            newFridayPassengers.set(0.0);
-                        }
-                        if (daiOfWeek == 6){
-                            newSaturdayPassengers.set(passagers);
-                        }else{
-                            newSaturdayPassengers.set(0.0);
+                            System.out.println("teste:" + fridayPassengers);
+                            newSundayPassengers.set(sundayPassengers + passagers);
+                            newMondayPassengers.set(mondayPassengers + passagers);
+                            newTuesdayPassengers.set(tuesdayPassengers + passagers);
+                            newWednesdayPassengers.set(wednesdayPassengers + passagers);
+                            newThursdayPassengers.set(thursdayPassengers + passagers);
+                            newFridayPassengers.set(fridayPassengers + passagers);
+                            newSaturdayPassengers.set(saturdayPassengers + passagers);
+
+                            database.updateBus(newSundayPassengers.get(), newMondayPassengers.get(), newTuesdayPassengers.get(), newWednesdayPassengers.get(), newThursdayPassengers.get(), newFridayPassengers.get(), newSaturdayPassengers.get(), route);
                         }
 
-                        database.sendBus(id,newSundayPassengers.get(), newMondayPassengers.get(), newTuesdayPassengers.get(), newWednesdayPassengers.get(), newThursdayPassengers.get(), newFridayPassengers.get(), newSaturdayPassengers.get(), route);
-                    }else{
-                        System.out.println("teste:" + fridayPassengers);
-                        newSundayPassengers.set(sundayPassengers + passagers);
-                        newMondayPassengers.set(mondayPassengers + passagers);
-                        newTuesdayPassengers.set(tuesdayPassengers + passagers);
-                        newWednesdayPassengers.set(wednesdayPassengers + passagers);
-                        newThursdayPassengers.set(thursdayPassengers + passagers);
-                        newFridayPassengers.set(fridayPassengers + passagers);
-                        newSaturdayPassengers.set(saturdayPassengers + passagers);
 
-                        database.updateBus(newSundayPassengers.get(), newMondayPassengers.get(), newTuesdayPassengers.get(), newWednesdayPassengers.get(), newThursdayPassengers.get(), newFridayPassengers.get(), newSaturdayPassengers.get(), route);
-                    }
+                    });
+                    thread.start();
+                }else if(pressedBtn == 1){
+                    Platform.runLater(() ->
+                            busBot(passagers, busPerRoute, route)
+                    );
+                }else if(pressedBtn == 2){
+                    Platform.runLater(() ->
+                            setRouteChart(route, passagers)
+                    );
+                }
 
 
-                });
-                thread.start();
-            }else if(pressedBtn == 1){
-                Platform.runLater(() ->
-                        busBot(passagers, busPerRoute, route)
-                );
-            }else if(pressedBtn == 2){
-                Platform.runLater(() ->
-                        setRouteChart(route, passagers)
-                );
             }
-
-
-        }
+        }).start();
     }
 
 
